@@ -45,7 +45,7 @@
 
   <build>
     <finalName>
-      template <!-- Change to your App-Name -->
+      UnAddict <!-- Change to your App-Name -->
     </finalName>
     <plugins>
       <plugin>

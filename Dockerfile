@@ -1,6 +1,6 @@
 FROM openjdk:17
 
-MAINTAINER Thomas <thomaskittlaus@gmail.com>
+MAINTAINER AccessCoder <andro5@web.de>
 
 ADD backend/target/template.jar template.jar
 
