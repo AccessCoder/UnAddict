@@ -6,7 +6,7 @@
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
     <version>2.6.2</version>
-    <relativePath/> <!-- lookup parent from repository -->
+    <relativePath/>
   </parent>
   <groupId>de.neuefische</groupId>
   <artifactId>backend</artifactId>
@@ -45,7 +45,7 @@
 
   <build>
     <finalName>
-      UnAddict <!-- Change to your App-Name -->
+      unaddict
     </finalName>
     <plugins>
       <plugin>
