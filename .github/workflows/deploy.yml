@@ -41,8 +41,8 @@ jobs:
         run: mvn -B package --file backend/pom.xml
       - uses: actions/upload-artifact@v2
         with:
-          name: UnAddict.jar
-          path: backend/target/UnAddict.jar
+          name: unaddict.jar
+          path: backend/target/unaddict.jar
 
   deploy-heroku:
     runs-on: ubuntu-latest
