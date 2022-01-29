@@ -48,7 +48,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build-backend
     environment:
-      name: unaddict-heroku
+      name: unaddict
       url: https://unaddict.herokuapp.com/
     env:
       HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
