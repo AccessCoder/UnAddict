@@ -1,12 +1,12 @@
 import React from 'react';
 import './App.css';
-import Dashboard from "./Pages/Dashboard";
-import ReactDOM from "react-dom";
+import RegistrationPage from "./Pages/RegistrationPage";
+
 
 export default function App() {
   return (
     <div className="App">
-      <Dashboard/>
+      <RegistrationPage/>
     </div>
   );
 }
