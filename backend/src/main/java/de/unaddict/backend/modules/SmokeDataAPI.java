@@ -32,11 +32,17 @@ public class SmokeDataAPI {
     public String getTimeNotSmoked(String userRegistrationTime) throws ParseException {
         SimpleDateFormat obj = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
         try {
+            //gets date and time from now.
             LocalDateTime justNow = LocalDateTime.now();
+            //because NOW gives you nanoseconds too, we need to Format it into the right pattern.
             Date now = obj.parse(justNow.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")));
+            //for now, this date already has the right Format, maybe: TODO Check format of the date from the Mongo!
             Date registrationDate = obj.parse(userRegistrationTime);
 
+            //calculates the difference in milliseconds
             long time_diff = now.getTime() - registrationDate.getTime();
+
+            //Transform millisecond values into the corresponding values
             long days_diff = TimeUnit.MILLISECONDS.toDays(time_diff);
             long hour_diff = TimeUnit.MILLISECONDS.toHours(time_diff)%24;
             long minute_diff = TimeUnit.MILLISECONDS.toMinutes(time_diff)%60;
@@ -49,4 +55,7 @@ public class SmokeDataAPI {
         }
         return "Hier könnte Ihre Werbung stehen";
     }
+
+
+
 }

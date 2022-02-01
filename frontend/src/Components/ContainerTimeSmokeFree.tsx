@@ -14,7 +14,7 @@ export default function ContainerTimeSmokeFree(){
     return(
         <div className={"outerContainer"}>
             <div className={"textContainer"}>
-                <h3>{timeSmokeFree} Days</h3>
+                <h3>{timeSmokeFree}</h3>
                 <h6>Without smoking</h6>
             </div>
         </div>
