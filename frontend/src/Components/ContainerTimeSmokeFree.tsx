@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 
 export default function ContainerTimeSmokeFree(){
-    const [timeSmokeFree, setTimeSmokeFree] = useState(0)
+    const [timeSmokeFree, setTimeSmokeFree] = useState("0")
 
     useEffect(() => {
         axios.get('/api/timesmokefree')
