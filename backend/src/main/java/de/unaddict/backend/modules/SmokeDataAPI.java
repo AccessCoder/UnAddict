@@ -23,6 +23,7 @@ public class SmokeDataAPI {
      * Algorithmus der abhängig vom eingehend angegebenen Rauchverhalten und der zurückgelegten, timeNotSmoked die nicht gerauchten Zigaretten ermittelt.
      */
 
+    private long timeSpanNonSmoked;
     /**
      * Get´s the saved time of registration from the UserData(in the final Product) puts it
      * and the time from now into the same format and calculates on this base the Difference between both in milliseconds.
@@ -40,22 +41,25 @@ public class SmokeDataAPI {
             Date registrationDate = obj.parse(userRegistrationTime);
 
             //calculates the difference in milliseconds
-            long time_diff = now.getTime() - registrationDate.getTime();
+            timeSpanNonSmoked = now.getTime() - registrationDate.getTime();
 
             //Transform millisecond values into the corresponding values
-            long days_diff = TimeUnit.MILLISECONDS.toDays(time_diff);
-            long hour_diff = TimeUnit.MILLISECONDS.toHours(time_diff)%24;
-            long minute_diff = TimeUnit.MILLISECONDS.toMinutes(time_diff)%60;
-            long seconds_diff = TimeUnit.MILLISECONDS.toSeconds(time_diff)%60;
+            long days_diff = TimeUnit.MILLISECONDS.toDays(timeSpanNonSmoked);
+            long hour_diff = TimeUnit.MILLISECONDS.toHours(timeSpanNonSmoked) % 24;
+            long minute_diff = TimeUnit.MILLISECONDS.toMinutes(timeSpanNonSmoked) % 60;
+            long seconds_diff = TimeUnit.MILLISECONDS.toSeconds(timeSpanNonSmoked) % 60;
 
             return days_diff + " Days " + hour_diff + " Hours " + minute_diff + " Minutes " + seconds_diff + " Seconds";
-        }
-        catch (ParseException exception){
+        } catch (ParseException exception) {
             exception.printStackTrace();
         }
         return "Hier könnte Ihre Werbung stehen";
     }
 
+    public double getNonSmokedCigarettes(int cigarettesSmokedEachDayLastYear) {
+        double cigaretteEachMillisecond = cigarettesSmokedEachDayLastYear/86400000;
+        return (cigaretteEachMillisecond*timeSpanNonSmoked);
 
+    }
 
 }

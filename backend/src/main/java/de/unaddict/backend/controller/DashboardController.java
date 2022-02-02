@@ -24,12 +24,12 @@ public class DashboardController {
     }
 
     @GetMapping("/nonsmoked")
-    public int getNonSmoked(){
-        return 5;
+    public double getNonSmoked(){
+        return service.getNonSmokedCigarettes(20);
     }
 
     @GetMapping("/savedmoney")
-    public int getSavedMoney(){
+    public double getSavedMoney(){
         return getNonSmoked()*5;
     }
 

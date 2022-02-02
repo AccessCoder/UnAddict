@@ -21,4 +21,8 @@ public class DashboardService {
     public String getTimeNotSmoked(String testTime) throws ParseException {
         return api.getTimeNotSmoked(testTime);
     }
+
+    public double getNonSmokedCigarettes(int testValue){
+        return api.getNonSmokedCigarettes(testValue);
+    }
 }
