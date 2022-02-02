@@ -1,6 +1,8 @@
 package de.unaddict.backend.modules;
 
+import de.unaddict.backend.repositories.IUserDataRepository;
 import lombok.Data;
+import org.apache.catalina.User;
 import org.springframework.stereotype.Repository;
 
 import java.text.ParseException;
@@ -12,6 +14,10 @@ import java.util.concurrent.TimeUnit;
 
 @Repository
 public class SmokeDataAPI {
+
+    IUserDataRepository repository;
+
+    UserData user = repository.findByEMail(userEMail);
 
     /**
      * Benötigte Infos:

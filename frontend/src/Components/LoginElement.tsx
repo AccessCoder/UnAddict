@@ -1,9 +1,18 @@
 import {Button, Link, TextField} from "@mui/material";
 import {useState} from "react";
+import ILoginData from "../Models/ILoginData";
+import {postLogin, TOKEN_STORAGE_KEY} from "../Service/AxiosServiceToBackend";
 
 export default function LoginElement(){
     const [userEMail, setUserEMail] = useState("");
     const [userPassword, setUserPassword] = useState("");
+
+    const login = () => {
+        const login: ILoginData = {email: userEMail, password: userPassword}
+        postLogin(login)
+            .then(response => localStorage.setItem(TOKEN_STORAGE_KEY, response.data))
+            .catch(error => console.error(error))
+    }
 
     return (
         <div className={"loginElements"}>

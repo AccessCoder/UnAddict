@@ -1,13 +1,12 @@
 import {useEffect, useState} from "react";
-import axios from "axios";
+import {getNonSmoked} from "../Service/AxiosServiceToBackend";
 
 export default function ContainerNonSmokedCigarettes(){
 
     const [nonSmoked, setNonSmoked] = useState(0)
 
     useEffect(() => {
-        axios.get('/api/nonsmoked')
-            .then(response => response.data)
+        getNonSmoked()
             .then(nonSmoked => setNonSmoked(nonSmoked))
             .catch(error => console.error(error))
     }, [])

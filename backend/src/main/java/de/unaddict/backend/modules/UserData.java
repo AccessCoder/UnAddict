@@ -30,6 +30,7 @@ public class UserData implements UserDetails {
     String name;
     String surname;
     String age;
+    long userRegistrationTime;
 
     int cigarettesSmokedEachDayLastYear;
     int cigarettesBranchCategory; //1- Premium (Marlboro, Lucky Strike, etc.) 2- Discounter (EDEKA, etc.) 3- Selfmade

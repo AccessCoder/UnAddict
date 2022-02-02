@@ -1,18 +1,17 @@
 import {useEffect, useState} from "react";
-import axios from "axios";
+import {getLifetime} from "../Service/AxiosServiceToBackend";
 
-export default function ContainerLifetimeGained(){
+export default function ContainerLifetimeGained() {
 
     const [gainedLifetime, setGainedLifetime] = useState(0)
 
     useEffect(() => {
-        axios.get('/api/lifetime')
-            .then(response => response.data)
+        getLifetime()
             .then(gainedLifetime => setGainedLifetime(gainedLifetime))
             .catch(error => console.error(error))
     }, [])
 
-    return(
+    return (
         <div className={"outerContainer"}>
             <div className={"textContainer"}>
                 <h3>{gainedLifetime} Days</h3>
