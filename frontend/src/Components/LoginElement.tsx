@@ -16,9 +16,11 @@ export default function LoginElement(){
 
     return (
         <div className={"loginElements"}>
-            <TextField variant="outlined" label="E-Mail" type="eMail" value={userEMail}/>
-            <TextField variant="filled" label="Password" type="password" value={userPassword} />
-            <Button variant="outlined">Login</Button>
+            <TextField variant="outlined" label="E-Mail" type="eMail" value={userEMail}
+                       onChange={(e) => setUserEMail(e.target.value)}/>
+            <TextField variant="filled" label="Password" type="password" value={userPassword}
+                       onChange={(e) => setUserPassword(e.target.value)}/>
+            <Button onClick={() => login()} variant="outlined">Login</Button>
             <Link href="registration" underline="hover" >
                 {'New here? - Register now, for free!'}
             </Link>

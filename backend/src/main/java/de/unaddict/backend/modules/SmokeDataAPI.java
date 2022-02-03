@@ -15,9 +15,10 @@ import java.util.concurrent.TimeUnit;
 @Repository
 public class SmokeDataAPI {
 
-    IUserDataRepository repository;
+    SimpleDateFormat obj = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+    //gets date and time from now.
+    LocalDateTime justNow = LocalDateTime.now();
 
-    UserData user = repository.findByEMail(userEMail);
 
     /**
      * Benötigte Infos:
@@ -37,10 +38,8 @@ public class SmokeDataAPI {
      * ReturnString shows up in the Frontend.
      */
     public String getTimeNotSmoked(String userRegistrationTime) throws ParseException {
-        SimpleDateFormat obj = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+
         try {
-            //gets date and time from now.
-            LocalDateTime justNow = LocalDateTime.now();
             //because NOW gives you nanoseconds too, we need to Format it into the right pattern.
             Date now = obj.parse(justNow.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")));
             //for now, this date already has the right Format, maybe: TODO Check format of the date from the Mongo!
@@ -62,8 +61,13 @@ public class SmokeDataAPI {
         return "Hier könnte Ihre Werbung stehen";
     }
 
-    public double getNonSmokedCigarettes(int cigarettesSmokedEachDayLastYear) {
-        double cigaretteEachMillisecond = cigarettesSmokedEachDayLastYear/86400000;
+    public double getNonSmokedCigarettes(int cigarettesSmokedEachDayLastYear, String registrationDate) throws ParseException {
+        double cigaretteEachMillisecond = cigarettesSmokedEachDayLastYear*1.0/86400000;
+
+        Date now = obj.parse(justNow.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")));
+        Date userRegistrationTime = obj.parse(registrationDate);
+        timeSpanNonSmoked = now.getTime() - userRegistrationTime.getTime();
+
         return (cigaretteEachMillisecond*timeSpanNonSmoked);
 
     }

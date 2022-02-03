@@ -14,9 +14,10 @@ import java.util.Collection;
 public class UserData implements UserDetails {
 
     public UserData(String eMail, String name, String password, int cigarettesSmokedEachDayLastYear, int cigarettesBranchCategory, int yearsSmoked, Collection<? extends GrantedAuthority> authorities) {
-        this.eMail = eMail;
+        this.email = eMail;
         this.name = name;
         this.password=password;
+//        this.userRegistrationTime=""
         this.cigarettesSmokedEachDayLastYear = cigarettesSmokedEachDayLastYear;
         this.cigarettesBranchCategory = cigarettesBranchCategory;
         this.yearsSmoked = yearsSmoked;
@@ -24,13 +25,13 @@ public class UserData implements UserDetails {
     }
 
     @Id
-    String eMail;
+    String email;
 
     String password;
     String name;
     String surname;
     String age;
-    long userRegistrationTime;
+    String userRegistrationTime;
 
     int cigarettesSmokedEachDayLastYear;
     int cigarettesBranchCategory; //1- Premium (Marlboro, Lucky Strike, etc.) 2- Discounter (EDEKA, etc.) 3- Selfmade
@@ -45,6 +46,7 @@ public class UserData implements UserDetails {
 
     @Override
     public String getUsername() {
-        return null;
+        return email;
     }
+
 }

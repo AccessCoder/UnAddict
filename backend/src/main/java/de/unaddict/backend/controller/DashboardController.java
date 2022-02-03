@@ -3,6 +3,7 @@ package de.unaddict.backend.controller;
 
 import de.unaddict.backend.services.DashboardService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,13 +25,13 @@ public class DashboardController {
     }
 
     @GetMapping("/nonsmoked")
-    public double getNonSmoked(){
-        return service.getNonSmokedCigarettes(20);
+    public double getNonSmoked(@RequestBody String token) throws ParseException {
+        return service.getNonSmokedCigarettes(token);
     }
 
     @GetMapping("/savedmoney")
-    public double getSavedMoney(){
-        return getNonSmoked()*5;
+    public double getSavedMoney(@RequestBody String token) throws ParseException {
+        return getNonSmoked(token)*5;
     }
 
     @GetMapping("timesmokefree")
