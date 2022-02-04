@@ -23,8 +23,8 @@ public class DashboardController {
     }
 
     @GetMapping("/lifetime")
-    public int getGainedLifetime() {
-
+    public int getGainedLifetime(UsernamePasswordAuthenticationToken authToken) {
+        UserData user = (UserData) authToken.getPrincipal();
         return 5;
     }
 
@@ -34,13 +34,15 @@ public class DashboardController {
         return service.getNonSmokedCigarettes(user);
     }
 
-//    @GetMapping("/savedmoney")
-//    public double getSavedMoney(Principal principal) throws ParseException {
-////        return getNonSmoked(principal.getName())*5;
-//    }
+    @GetMapping("/savedmoney")
+    public double getSavedMoney(UsernamePasswordAuthenticationToken authToken) throws ParseException {
+        UserData user = (UserData) authToken.getPrincipal();
+        return service.getNonSmokedCigarettes(user)*5;
+    }
 
     @GetMapping("timesmokefree")
-    public String getTimeNonSmoked() throws ParseException {
-        return service.getTimeNotSmoked("01-01-2022 00:00:00");
+    public String getTimeNonSmoked(UsernamePasswordAuthenticationToken authToken) throws ParseException {
+        UserData user = (UserData) authToken.getPrincipal();
+        return service.getTimeNotSmoked(user);
     }
 }

@@ -3,10 +3,6 @@ package de.unaddict.backend.services;
 import de.unaddict.backend.components.MongoUserDetailsService;
 import de.unaddict.backend.modules.SmokeDataAPI;
 import de.unaddict.backend.modules.UserData;
-import de.unaddict.backend.repositories.IUserDataRepository;
-import de.unaddict.backend.security.JWTUtils;
-import org.apache.catalina.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
@@ -22,12 +18,13 @@ public class DashboardService {
         this.api = api;
     }
 
-
-    public String getTimeNotSmoked(String testTime) throws ParseException {
-        return api.getTimeNotSmoked(testTime);
+    public String getTimeNotSmoked(UserData user) throws ParseException {
+        return api.getTimeNotSmoked(user.getUserRegistrationTime());
     }
 
-    public double getNonSmokedCigarettes(UserData user) throws ParseException {
+    public long getNonSmokedCigarettes(UserData user) throws ParseException {
         return api.getNonSmokedCigarettes(user.getCigarettesSmokedEachDayLastYear(), user.getUserRegistrationTime());
     }
+
+
 }

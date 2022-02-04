@@ -1,8 +1,5 @@
 package de.unaddict.backend.modules;
 
-import de.unaddict.backend.repositories.IUserDataRepository;
-import lombok.Data;
-import org.apache.catalina.User;
 import org.springframework.stereotype.Repository;
 
 import java.text.ParseException;
@@ -61,14 +58,14 @@ public class SmokeDataAPI {
         return "Hier könnte Ihre Werbung stehen";
     }
 
-    public double getNonSmokedCigarettes(int cigarettesSmokedEachDayLastYear, String registrationDate) throws ParseException {
+    public long getNonSmokedCigarettes(int cigarettesSmokedEachDayLastYear, String registrationDate) throws ParseException {
         double cigaretteEachMillisecond = cigarettesSmokedEachDayLastYear*1.0/86400000;
 
         Date now = obj.parse(justNow.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")));
         Date userRegistrationTime = obj.parse(registrationDate);
         timeSpanNonSmoked = now.getTime() - userRegistrationTime.getTime();
-
-        return (cigaretteEachMillisecond*timeSpanNonSmoked);
+        double nonSmoked = cigaretteEachMillisecond*timeSpanNonSmoked;
+        return ((long) nonSmoked);
 
     }
 
