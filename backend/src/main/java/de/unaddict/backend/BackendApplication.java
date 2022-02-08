@@ -38,7 +38,7 @@ public class BackendApplication implements CommandLineRunner {
 //        repository.save(new UserData("tommy@test.de", "tommy", encodedPassword, 5, 1, 4, List.of(new SimpleGrantedAuthority(MongoUserDetailsService.AUTHORITY_API_READWRITE))));
 
         String encodedPassword = encoder.encode("tom123");
-        repository.save(new UserData("tomtest", "tom2", encodedPassword, 20, 3, 12, List.of(new SimpleGrantedAuthority(MongoUserDetailsService.AUTHORITY_API_READWRITE))));
+        repository.save(new UserData("tomtest", "tom2", encodedPassword, 22,  20, 3, 12, List.of(new SimpleGrantedAuthority(MongoUserDetailsService.AUTHORITY_API_READWRITE))));
 
         // find Users
         System.out.println("Customers found with findAll():");
