@@ -1,6 +1,6 @@
 package de.unaddict.backend.security;
 
-import de.unaddict.backend.components.MongoUserDetailsService;
+import de.unaddict.backend.repositories.MongoUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;

@@ -1,6 +1,6 @@
 package de.unaddict.backend.security;
 
-import de.unaddict.backend.components.MongoUserDetailsService;
+import de.unaddict.backend.repositories.MongoUserDetailsService;
 import org.apache.juli.logging.Log;
 import org.apache.juli.logging.LogFactory;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
