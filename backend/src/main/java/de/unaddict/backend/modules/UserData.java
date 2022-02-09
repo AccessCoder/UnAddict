@@ -12,7 +12,6 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Collection;
-import java.util.Date;
 
 @Data
 @NoArgsConstructor
@@ -61,9 +60,9 @@ public class UserData implements UserDetails {
     public boolean isCredentialsNonExpired= true;
     public boolean isEnabled= true;
 
+
     @Override
     public String getUsername() {
-        return email;
+        return null;
     }
-
 }
