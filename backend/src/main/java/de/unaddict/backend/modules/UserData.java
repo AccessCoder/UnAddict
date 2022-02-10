@@ -23,7 +23,7 @@ public class UserData implements UserDetails {
     LocalDateTime justNow = LocalDateTime.now();
 
 
-    public UserData(String email, String name, String surname, String password, int age, int cigarettesSmokedEachDayLastYear, int cigarettesBranchCategory, int yearsSmoked, Collection<? extends GrantedAuthority> authorities) {
+    public UserData(String email, String name, String password, int age, int cigarettesSmokedEachDayLastYear, int cigarettesBranchCategory, int yearsSmoked, Collection<? extends GrantedAuthority> authorities) {
         this.email = email;
         this.name = name;
         this.password=password;
@@ -45,7 +45,6 @@ public class UserData implements UserDetails {
 
     String password;
     String name;
-    String surname;
     int age;
     String userRegistrationTime;
 
@@ -58,11 +57,11 @@ public class UserData implements UserDetails {
     public boolean isAccountNonExpired= true;
     public boolean isAccountNonLocked= true;
     public boolean isCredentialsNonExpired= true;
-    public boolean isEnabled= true;
+    public boolean isEnabled= false;
 
 
     @Override
     public String getUsername() {
-        return null;
+        return name;
     }
 }
