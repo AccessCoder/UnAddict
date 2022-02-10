@@ -17,7 +17,7 @@ export default function NavigationElement() {
     const logout = () => {
         localStorage.removeItem(TOKEN_STORAGE_KEY);
         handleClose()
-        window.location.replace('http://localstorage:3000/login')
+        window.location.replace('/login')
     }
 
     return (
