@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.text.ParseException;
+import java.time.Instant;
 
 @Service
 @Transactional
@@ -30,6 +31,7 @@ public class UserService implements IUserService {
         user.setName(userDto.getName());
         user.setSurname(userDto.getSurname());
         user.setAge(userDto.getAge());
+        user.setUserRegistrationTime(Instant.now());
         user.setCigarettesSmokedEachDayLastYear(userDto.getCigarettesSmokedEachDayLastYear());
         user.setCigarettesBranchCategory(userDto.getCigarettesBranchCategory());
         user.setYearsSmoked(userDto.getYearsSmoked());
