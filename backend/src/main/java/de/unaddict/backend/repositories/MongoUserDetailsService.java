@@ -1,7 +1,6 @@
 package de.unaddict.backend.repositories;
 
 import de.unaddict.backend.modules.UserData;
-import de.unaddict.backend.repositories.IUserDataRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

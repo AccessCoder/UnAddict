@@ -8,19 +8,15 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Collection;
-import java.util.Date;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserData implements UserDetails {
 
-    public UserData(String email, String name, String surname, String password, int age, int cigarettesSmokedEachDayLastYear, int cigarettesBranchCategory, int yearsSmoked, Collection<? extends GrantedAuthority> authorities) {
+    public UserData(String email, String name, String password, int age, int cigarettesSmokedEachDayLastYear, int cigarettesBranchCategory, int yearsSmoked, Collection<? extends GrantedAuthority> authorities) {
         this.email = email;
         this.name = name;
         this.password=password;
@@ -41,7 +37,6 @@ public class UserData implements UserDetails {
 
     String password;
     String name;
-    String surname;
     int age;
     Instant userRegistrationTime;
 
@@ -54,11 +49,11 @@ public class UserData implements UserDetails {
     public boolean isAccountNonExpired= true;
     public boolean isAccountNonLocked= true;
     public boolean isCredentialsNonExpired= true;
-    public boolean isEnabled= true;
+    public boolean isEnabled= false;
+
 
     @Override
     public String getUsername() {
-        return email;
+        return name;
     }
-
 }

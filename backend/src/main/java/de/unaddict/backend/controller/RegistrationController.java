@@ -3,12 +3,11 @@ package de.unaddict.backend.controller;
 import de.unaddict.backend.exceptions.UserAlreadyExistException;
 import de.unaddict.backend.modules.UserData;
 import de.unaddict.backend.modules.UserDto;
+import de.unaddict.backend.security.EmailDto;
 import de.unaddict.backend.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,15 +21,6 @@ public class RegistrationController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/registration")
-    public String showRegistrationForm(WebRequest request, Model model) {
-        UserDto userDto = new UserDto();
-        model.addAttribute("user", userDto);
-        return "registration";
-    }
-
-
-
     @PostMapping("/registration")
     public ModelAndView registerUserAccount(
             @ModelAttribute("user") @Valid UserDto userDto,
@@ -39,13 +29,18 @@ public class RegistrationController {
 
         try {
             UserData registered = userService.registerNewUserAccount(userDto);
+            userService.startEmailVerification(registered.getEmail());
         } catch (UserAlreadyExistException | ParseException uaeEx) {
             ModelAndView mav = new ModelAndView();
-            mav.addObject("message", "An account for that username/email already exists.");
+            mav.addObject("message", "An account for that email already exists.");
             return mav;
         }
 
         return new ModelAndView("successRegister", "user", userDto);
     }
 
+    @PostMapping("/email")
+    public boolean verificateEmail(@RequestBody @Valid EmailDto emailDto) {
+        return userService.verificateEmailToken(emailDto);
+    }
 }

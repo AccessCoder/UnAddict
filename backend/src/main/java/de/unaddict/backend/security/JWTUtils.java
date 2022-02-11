@@ -3,7 +3,6 @@ package de.unaddict.backend.security;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.time.Duration;
@@ -15,9 +14,9 @@ import java.util.Map;
 public class JWTUtils {
 
 //    @Value(value = "${SECRET_KEY}")
-    private String secret = "theCakeIsALie!!";
+    private static String secret = "theCakeIsALie!!";
 
-    public String createToken(Map<String, Object> claims, String subject){
+    public static String createToken(Map<String, Object> claims, String subject){
         return Jwts.builder()
                 .setClaims(claims)
                 .setSubject(subject)
@@ -47,5 +46,8 @@ public class JWTUtils {
                 .parseClaimsJws(token).getBody();
     }
 
+    public Claims parseClaim(String token) {
+        return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
+    }
 }
 

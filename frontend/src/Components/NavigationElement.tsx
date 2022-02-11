@@ -2,6 +2,7 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import {TOKEN_STORAGE_KEY} from "../Service/AxiosServiceToBackend";
 
 export default function NavigationElement() {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -12,6 +13,12 @@ export default function NavigationElement() {
     const handleClose = () => {
         setAnchorEl(null);
     };
+
+    const logout = () => {
+        localStorage.removeItem(TOKEN_STORAGE_KEY);
+        handleClose()
+        window.location.replace('/login')
+    }
 
     return (
         <div>
@@ -35,7 +42,7 @@ export default function NavigationElement() {
             >
                 <MenuItem onClick={handleClose}>Settings</MenuItem>
                 <MenuItem onClick={handleClose}>My account</MenuItem>
-                <MenuItem onClick={handleClose}>Logout</MenuItem>
+                <MenuItem onClick={logout}>Logout</MenuItem>
             </Menu>
         </div>
     );
