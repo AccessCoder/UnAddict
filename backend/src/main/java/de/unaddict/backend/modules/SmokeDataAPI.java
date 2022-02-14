@@ -2,11 +2,7 @@ package de.unaddict.backend.modules;
 
 import org.springframework.stereotype.Repository;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.*;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 @Repository
@@ -31,14 +27,9 @@ public class SmokeDataAPI {
      * ReturnString shows up in the Frontend.
      */
 
-    SimpleDateFormat obj = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-    //gets date and time from now.
-    LocalDateTime justNow = LocalDateTime.now();
     private Duration timeSpanNonSmoked;
-    private double lifetimeRegained;
 
     public String getTimeNotSmoked(String userRegistrationTime) {
-
 
         //because NOW gives you nanoseconds too, we need to Format it into the right pattern.
         Instant registrationDate = Instant.parse(userRegistrationTime);
@@ -55,13 +46,13 @@ public class SmokeDataAPI {
         return days_diff + " Days " + hour_diff + " Hours " + minute_diff + " Minutes " + seconds_diff + " Seconds";
     }
 
-    public long getNonSmokedCigarettes(int cigarettesSmokedEachDayLastYear, String registrationDate) throws ParseException {
+    public long getNonSmokedCigarettes(int cigarettesSmokedEachDayLastYear, String userRegistrationTime) {
         double cigaretteEachMillisecond = cigarettesSmokedEachDayLastYear * 1.0 / 86400000;
 
-        Date now = obj.parse(justNow.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")));
-        Date userRegistrationTime = obj.parse(registrationDate);
-        timeSpanNonSmoked = now.getTime() - userRegistrationTime.getTime();
-        double nonSmoked = cigaretteEachMillisecond * timeSpanNonSmoked;
+        Instant registrationDate = Instant.parse(userRegistrationTime);
+        timeSpanNonSmoked = Duration.between(Instant.now(), registrationDate);
+        long timeSpanNonSmokedInMillis= timeSpanNonSmoked.toMillis();
+        double nonSmoked = cigaretteEachMillisecond * timeSpanNonSmokedInMillis;
         return ((long) nonSmoked);
 
     }
@@ -90,57 +81,54 @@ public class SmokeDataAPI {
      * due to your Body healing itself.
      */
 
-    public String getLifetimeSaved(int ageOfUser, String registrationDate) throws ParseException {
+    public String getLifetimeSaved(int ageOfUser, String userRegistrationTime) {
         int lost_years = 7;
         double lifetimeRegainedInMilliseconds = 0;
 
-        Date now = obj.parse(justNow.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")));
-        Date userRegistrationTime = obj.parse(registrationDate);
-        timeSpanNonSmoked = now.getTime() - userRegistrationTime.getTime();
+        Instant registrationDate = Instant.parse(userRegistrationTime);
+        timeSpanNonSmoked = Duration.between(Instant.now(), registrationDate);
+        long timeSpanNonSmokedInMillis= timeSpanNonSmoked.toMillis();
+
+        double lifetimeGained;
 
         if (ageOfUser <= 30 && ageOfUser > 0) {
             double timeYouCanGetBack = (lost_years * 365) * 0.99;
-            double timeYouCanGetBackEachMillisecond = timeYouCanGetBack / 86400000;
-            lifetimeRegainedInMilliseconds = timeSpanNonSmoked * timeYouCanGetBackEachMillisecond;
-            if (lifetimeRegainedInMilliseconds >= (timeYouCanGetBack * 86400000)) {
-                lifetimeRegainedInMilliseconds = (timeYouCanGetBack * 86400000);
+            lifetimeGained = (timeYouCanGetBack * 86400000)*timeSpanNonSmokedInMillis;
+            if (lifetimeGained >= (timeYouCanGetBack * 86400000)) {
+                lifetimeGained = (timeYouCanGetBack * 86400000);
             }
 
         } else if (ageOfUser <= 40 && ageOfUser > 30) {
             double timeYouCanGetBack = (lost_years * 365) * 0.90;
-            double timeYouCanGetBackEachMillisecond = timeYouCanGetBack / 86400000;
-            lifetimeRegainedInMilliseconds = timeSpanNonSmoked * timeYouCanGetBackEachMillisecond;
-            if (lifetimeRegainedInMilliseconds >= (timeYouCanGetBack * 86400000)) {
-                lifetimeRegainedInMilliseconds = (timeYouCanGetBack * 86400000);
+            lifetimeGained = (timeYouCanGetBack * 86400000)*timeSpanNonSmokedInMillis;
+            if (lifetimeGained >= (timeYouCanGetBack * 86400000)) {
+                lifetimeGained = (timeYouCanGetBack * 86400000);
             }
 
         } else if (ageOfUser >= 45 && ageOfUser <= 54) {
             double timeYouCanGetBack = ((lost_years - 2) * 365);
-            double timeYouCanGetBackEachMillisecond = timeYouCanGetBack / 86400000;
-            lifetimeRegainedInMilliseconds = timeSpanNonSmoked * timeYouCanGetBackEachMillisecond;
-            if (lifetimeRegainedInMilliseconds >= (timeYouCanGetBack * 86400000)) {
-                lifetimeRegainedInMilliseconds = (timeYouCanGetBack * 86400000);
+            lifetimeGained = (timeYouCanGetBack * 86400000)*timeSpanNonSmokedInMillis;
+            if (lifetimeGained >= (timeYouCanGetBack * 86400000)) {
+                lifetimeGained = (timeYouCanGetBack * 86400000);
             }
         } else if (ageOfUser >= 55 && ageOfUser <= 64) {
             double timeYouCanGetBack = ((lost_years - 3) * 365);
-            double timeYouCanGetBackEachMillisecond = timeYouCanGetBack / 86400000;
-            lifetimeRegainedInMilliseconds = timeSpanNonSmoked * timeYouCanGetBackEachMillisecond;
-            if (lifetimeRegainedInMilliseconds >= (timeYouCanGetBack * 86400000)) {
-                lifetimeRegainedInMilliseconds = (timeYouCanGetBack * 86400000);
+            lifetimeGained = (timeYouCanGetBack * 86400000)*timeSpanNonSmokedInMillis;
+            if (lifetimeGained >= (timeYouCanGetBack * 86400000)) {
+                lifetimeGained = (timeYouCanGetBack * 86400000);
             }
         } else {
             double timeYouCanGetBack = ((lost_years - 5) * 365);
-            double timeYouCanGetBackEachMillisecond = timeYouCanGetBack / 86400000;
-            lifetimeRegainedInMilliseconds = timeSpanNonSmoked * timeYouCanGetBackEachMillisecond;
-            if (lifetimeRegainedInMilliseconds >= (timeYouCanGetBack * 86400000)) {
-                lifetimeRegainedInMilliseconds = (timeYouCanGetBack * 86400000);
+            lifetimeGained = (timeYouCanGetBack * 86400000)*timeSpanNonSmokedInMillis;
+            if (lifetimeGained >= (timeYouCanGetBack * 86400000)) {
+                lifetimeGained = (timeYouCanGetBack * 86400000);
             }
         }
 
-        long days_diff = TimeUnit.MILLISECONDS.toDays((long) lifetimeRegainedInMilliseconds);
-        long hour_diff = TimeUnit.MILLISECONDS.toHours((long) lifetimeRegainedInMilliseconds) % 24;
-        long minute_diff = TimeUnit.MILLISECONDS.toMinutes((long) lifetimeRegainedInMilliseconds) % 60;
-        long seconds_diff = TimeUnit.MILLISECONDS.toSeconds((long) lifetimeRegainedInMilliseconds) % 60;
+        long days_diff = TimeUnit.MILLISECONDS.toDays((long) lifetimeGained);
+        long hour_diff = TimeUnit.MILLISECONDS.toHours((long) lifetimeGained) % 24;
+        long minute_diff = TimeUnit.MILLISECONDS.toMinutes((long) lifetimeGained) % 60;
+        long seconds_diff = TimeUnit.MILLISECONDS.toSeconds((long) lifetimeGained) % 60;
 
         return days_diff + " Days " + hour_diff + " Hours " + minute_diff + " Minutes " + seconds_diff + " Seconds";
 
