@@ -25,12 +25,8 @@ public class UserData implements UserDetails {
         this.cigarettesBranchCategory = cigarettesBranchCategory;
         this.yearsSmoked = yearsSmoked;
         this.authorities = authorities;
-    } //TODO Check if you really need this !
-
-    public UserData (String email) throws ParseException {
-        this.email=email;
-//        this.userRegistrationTime= obj.parse(justNow.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss"))).toString();
     }
+
 
     @Id
     String email;

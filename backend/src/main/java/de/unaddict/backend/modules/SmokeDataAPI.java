@@ -17,11 +17,9 @@ public class SmokeDataAPI {
 
     private Duration timeSpanNonSmoked;
 
-    public String getTimeNotSmoked(String userRegistrationTime) {
+    public String getTimeNotSmoked(Instant userRegistrationTime) {
 
-        Instant registrationDate = Instant.parse(userRegistrationTime);
-
-        timeSpanNonSmoked = Duration.between(Instant.now(), registrationDate);
+        timeSpanNonSmoked = Duration.between(Instant.now(), userRegistrationTime);
 
         long days_diff = timeSpanNonSmoked.toDaysPart();
         long hour_diff = timeSpanNonSmoked.toHoursPart();
@@ -37,11 +35,10 @@ public class SmokeDataAPI {
      * cigarettes that was not smoked at every time the User refreshed the Dashboard.
      */
 
-    public long getNonSmokedCigarettes(int cigarettesSmokedEachDayLastYear, String userRegistrationTime) {
+    public long getNonSmokedCigarettes(int cigarettesSmokedEachDayLastYear, Instant userRegistrationTime) {
         double cigaretteEachMillisecond = cigarettesSmokedEachDayLastYear * 1.0 / 86400000;
 
-        Instant registrationDate = Instant.parse(userRegistrationTime);
-        timeSpanNonSmoked = Duration.between(Instant.now(), registrationDate);
+        timeSpanNonSmoked = Duration.between(Instant.now(), userRegistrationTime);
         long timeSpanNonSmokedInMillis= timeSpanNonSmoked.toMillis();
         double nonSmoked = cigaretteEachMillisecond * timeSpanNonSmokedInMillis;
         return ((long) nonSmoked);
@@ -80,12 +77,10 @@ public class SmokeDataAPI {
      * due to your Body healing itself.
      */
 
-    public String getLifetimeSaved(int ageOfUser, String userRegistrationTime) {
+    public String getLifetimeSaved(int ageOfUser, Instant userRegistrationTime) {
         int lost_years = 7;
-        double lifetimeRegainedInMilliseconds = 0;
 
-        Instant registrationDate = Instant.parse(userRegistrationTime);
-        timeSpanNonSmoked = Duration.between(Instant.now(), registrationDate);
+        timeSpanNonSmoked = Duration.between(Instant.now(), userRegistrationTime);
         long timeSpanNonSmokedInMillis= timeSpanNonSmoked.toMillis();
 
         double lifetimeGained;
