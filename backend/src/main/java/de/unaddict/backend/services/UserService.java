@@ -45,7 +45,6 @@ public class UserService implements IUserService {
         UserData user = new UserData(userDto.getEmail());
         user.setPassword(userDto.getPassword());
         user.setName(userDto.getName());
-        user.setSurname(userDto.getSurname());
         user.setAge(userDto.getAge());
         user.setUserRegistrationTime(Instant.now());
         user.setCigarettesSmokedEachDayLastYear(userDto.getCigarettesSmokedEachDayLastYear());

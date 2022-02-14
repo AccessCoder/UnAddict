@@ -19,18 +19,18 @@ public class DashboardService {
     }
 
     public String getTimeNotSmoked(UserData user) throws ParseException {
-        return api.getTimeNotSmoked(user.getUserRegistrationTime());
+        return api.getTimeNotSmoked(user.getUserRegistrationTime().toString());
     }
 
     public long getNonSmokedCigarettes(UserData user) throws ParseException {
-        return api.getNonSmokedCigarettes(user.getCigarettesSmokedEachDayLastYear(), user.getUserRegistrationTime());
+        return api.getNonSmokedCigarettes(user.getCigarettesSmokedEachDayLastYear(), user.getUserRegistrationTime().toString());
     }
 
     public double getMoneySaved(UserData user) throws ParseException {
-        return api.getMoneySavedPerCigarette(user.getCigarettesBranchCategory())* api.getNonSmokedCigarettes(user.getCigarettesSmokedEachDayLastYear(), user.getUserRegistrationTime());
+        return api.getMoneySavedPerCigarette(user.getCigarettesBranchCategory())* api.getNonSmokedCigarettes(user.getCigarettesSmokedEachDayLastYear(), user.getUserRegistrationTime().toString());
     }
 
     public String getLifetimeSaved(UserData user) throws ParseException {
-        return api.getLifetimeSaved(user.getAge(), user.getUserRegistrationTime());
+        return api.getLifetimeSaved(user.getAge(), user.getUserRegistrationTime().toString());
     }
 }
