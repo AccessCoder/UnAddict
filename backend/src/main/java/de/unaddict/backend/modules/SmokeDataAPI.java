@@ -8,22 +8,10 @@ import java.util.concurrent.TimeUnit;
 @Repository
 public class SmokeDataAPI {
 
-
     /**
-     * Benötigte Infos:
-     * <p>
-     * Preisgruppen von Zigaretten Marken, damit man diese später abfragen kann (Malboro, LuckyStrike, selbstdrehen etc.
-     * Packungsgrößen -> evtl. wichtig für "Preisoptimierung" der savedMoney Variablen.
-     * Durchschnittlich gewonnene Lebenszeit pro {Zeiteinheit}, wenn mann mit dem rauchen aufhört
-     * Algorithmus der vom Zeitpunkt der Anmeldung aus die Differenz zum aktuellen Zeitpunkt errechnet -> timeNotSmoked
-     * Algorithmus der abhängig vom eingehend angegebenen Rauchverhalten und der zurückgelegten, timeNotSmoked die nicht gerauchten Zigaretten ermittelt.
-     */
-
-
-    /**
-     * Get´s the saved time of registration from the UserData puts it
-     * and the time from now into the same format and calculates on this base the Difference between both in milliseconds.
-     * TimeUnit functionality transforms them into the right form.
+     * Get´s the saved time of registration from the UserData
+     * and the time from now and calculates on this base the Difference between both.
+     * In the end, we transform then into the correct value for days, hours, minutes and seconds.
      * ReturnString shows up in the Frontend.
      */
 
@@ -31,13 +19,10 @@ public class SmokeDataAPI {
 
     public String getTimeNotSmoked(String userRegistrationTime) {
 
-        //because NOW gives you nanoseconds too, we need to Format it into the right pattern.
         Instant registrationDate = Instant.parse(userRegistrationTime);
 
-        //calculates the difference in milliseconds
         timeSpanNonSmoked = Duration.between(Instant.now(), registrationDate);
 
-        //Transform millisecond values into the corresponding values
         long days_diff = timeSpanNonSmoked.toDaysPart();
         long hour_diff = timeSpanNonSmoked.toHoursPart();
         long minute_diff = timeSpanNonSmoked.toMinutesPart();
@@ -45,6 +30,12 @@ public class SmokeDataAPI {
 
         return days_diff + " Days " + hour_diff + " Hours " + minute_diff + " Minutes " + seconds_diff + " Seconds";
     }
+
+    /**
+     * Calculates the non smoked Cigarettes by getting the cigarettes that the user smoked each day last year from the Database
+     * after that, we turn it into the value of "SmokedLastYearEachMillisecond" to calculate the exact amount of
+     * cigarettes that was not smoked at every time the User refreshed the Dashboard.
+     */
 
     public long getNonSmokedCigarettes(int cigarettesSmokedEachDayLastYear, String userRegistrationTime) {
         double cigaretteEachMillisecond = cigarettesSmokedEachDayLastYear * 1.0 / 86400000;
@@ -57,12 +48,20 @@ public class SmokeDataAPI {
 
     }
 
+    /**
+     * The User can choose a category of cigarette branch, when he signs in.
+     * Each category has its own price point:
+     * 1. Premium (Marlboro, Lucky Strike, etc.) about 0.31€ per cigarette
+     * 2. Discounter (Boston, Edison, Giants, etc.) about 0.25€ per cigarette
+     * 3. Selfmade about 0.15€ per cigarette.
+     */
+
     public double getMoneySavedPerCigarette(int cigarettesBranchCategory) {
         if (cigarettesBranchCategory == 1) {
             return 0.31;
         } else if (cigarettesBranchCategory == 2) {
             return 0.25;
-        } else return 0.10;
+        } else return 0.15;
     }
 
     /**
