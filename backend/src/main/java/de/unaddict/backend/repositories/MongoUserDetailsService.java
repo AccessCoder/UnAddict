@@ -28,7 +28,7 @@ public class MongoUserDetailsService implements UserDetailsService {
         return user.get();
     }
 
-    public static UserData loadUserByMail(String userEmail) throws UsernameNotFoundException{
+    public UserData loadUserByMail(String userEmail) throws UsernameNotFoundException{
         Optional<UserData> user = repository.findByEmail(userEmail);
         if (user.isEmpty()){
             throw new UsernameNotFoundException("User not found");

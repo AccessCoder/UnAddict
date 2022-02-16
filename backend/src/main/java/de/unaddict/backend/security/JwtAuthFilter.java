@@ -1,5 +1,6 @@
 package de.unaddict.backend.security;
 
+import de.unaddict.backend.modules.UserData;
 import de.unaddict.backend.repositories.MongoUserDetailsService;
 import org.apache.juli.logging.Log;
 import org.apache.juli.logging.LogFactory;
@@ -38,11 +39,11 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             if ((userEMail != null)
                     && (SecurityContextHolder.getContext().getAuthentication() == null)) {
                 //Lade User aus DB
-                final UserDetails userDetails = userService.loadUserByUsername(userEMail);
-                if (jwtUtils.validateToken(token, userDetails.getUsername())){
+                final UserData userData = userService.loadUserByMail(userEMail);
+                if (jwtUtils.validateToken(token, userData.getEmail())){
                     //Info an Spring, das Anmeldung korrekt ist!
                     final UsernamePasswordAuthenticationToken authToken =
-                            new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+                            new UsernamePasswordAuthenticationToken(userData, null, userData.getAuthorities());
                     authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                     SecurityContextHolder.getContext().setAuthentication(authToken);
                 }

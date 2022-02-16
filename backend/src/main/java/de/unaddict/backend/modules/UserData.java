@@ -27,6 +27,10 @@ public class UserData implements UserDetails {
         this.authorities = authorities;
     }
 
+    public UserData (String email){
+        this.email=email;
+    }
+
 
     @Id
     String email;

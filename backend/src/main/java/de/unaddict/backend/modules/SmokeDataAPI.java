@@ -19,12 +19,12 @@ public class SmokeDataAPI {
 
     public String getTimeNotSmoked(Instant userRegistrationTime) {
 
-        timeSpanNonSmoked = Duration.between(Instant.now(), userRegistrationTime);
+        timeSpanNonSmoked = Duration.between(userRegistrationTime, Instant.now());
 
-        long days_diff = timeSpanNonSmoked.toDaysPart();
-        long hour_diff = timeSpanNonSmoked.toHoursPart();
-        long minute_diff = timeSpanNonSmoked.toMinutesPart();
-        long seconds_diff = timeSpanNonSmoked.toSecondsPart();
+        long days_diff = timeSpanNonSmoked.abs().toDaysPart();
+        long hour_diff = timeSpanNonSmoked.abs().toHoursPart();
+        long minute_diff = timeSpanNonSmoked.abs().toMinutesPart();
+        long seconds_diff = timeSpanNonSmoked.abs().toSecondsPart();
 
         return days_diff + " Days " + hour_diff + " Hours " + minute_diff + " Minutes " + seconds_diff + " Seconds";
     }
@@ -39,7 +39,7 @@ public class SmokeDataAPI {
         double cigaretteEachMillisecond = cigarettesSmokedEachDayLastYear * 1.0 / 86400000;
 
         timeSpanNonSmoked = Duration.between(Instant.now(), userRegistrationTime);
-        long timeSpanNonSmokedInMillis= timeSpanNonSmoked.toMillis();
+        long timeSpanNonSmokedInMillis= timeSpanNonSmoked.abs().toMillis();
         double nonSmoked = cigaretteEachMillisecond * timeSpanNonSmokedInMillis;
         return ((long) nonSmoked);
 
@@ -81,7 +81,7 @@ public class SmokeDataAPI {
         int lost_years = 7;
 
         timeSpanNonSmoked = Duration.between(Instant.now(), userRegistrationTime);
-        long timeSpanNonSmokedInMillis= timeSpanNonSmoked.toMillis();
+        long timeSpanNonSmokedInMillis= timeSpanNonSmoked.abs().toMillis();
 
         double lifetimeGained;
 

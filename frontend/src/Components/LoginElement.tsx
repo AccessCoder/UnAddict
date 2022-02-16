@@ -8,8 +8,8 @@ export default function LoginElement(){
     const [userPassword, setUserPassword] = useState("");
 
     const login = () => {
-        const login: ILoginData = {email: userEMail, password: userPassword}
-        postLogin(login)
+        const loginData: ILoginData = {email: userEMail, password: userPassword}
+        postLogin(loginData)
             .then(response => localStorage.setItem(TOKEN_STORAGE_KEY, response.data))
             .catch(error => console.error(error))
     }

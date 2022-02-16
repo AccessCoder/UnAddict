@@ -2,6 +2,7 @@ package de.unaddict.backend.services;
 
 import de.unaddict.backend.modules.SmokeDataAPI;
 import de.unaddict.backend.modules.UserData;
+import de.unaddict.backend.repositories.MongoUserDetailsService;
 import org.springframework.stereotype.Service;
 
 
@@ -10,8 +11,11 @@ public class DashboardService {
 
     private final SmokeDataAPI api;
 
-    public DashboardService(SmokeDataAPI api) {
+    private final MongoUserDetailsService service;
+
+    public DashboardService(SmokeDataAPI api, MongoUserDetailsService service) {
         this.api = api;
+        this.service = service;
     }
 
     public String getTimeNotSmoked(UserData user) {

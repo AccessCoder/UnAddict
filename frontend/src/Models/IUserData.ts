@@ -4,7 +4,7 @@ export default interface IUserData{
 
     //User Data
     name:string;
-    surname:string;
+    password:string;
     age:number;
 
     //api relevant Data

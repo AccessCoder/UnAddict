@@ -33,10 +33,10 @@ public class BackendApplication implements CommandLineRunner {
 //        repository.deleteAll();
 //
 //        //add Users
-        String encodedPassword = encoder.encode("tom123");
-        UserData user = new UserData("tom@test.de", "tom", encodedPassword, 20, 20, 3, 12, List.of(new SimpleGrantedAuthority(MongoUserDetailsService.AUTHORITY_API_READWRITE)));
-        user.setUserRegistrationTime(Instant.now());
-        repository.save(user);
+//        String encodedPassword = encoder.encode("tom123");
+//        UserData user = new UserData("tom@test.de", "tom", encodedPassword, 20, 20, 3, 12, List.of(new SimpleGrantedAuthority(MongoUserDetailsService.AUTHORITY_API_READWRITE)));
+//        user.setUserRegistrationTime(Instant.now());
+//        repository.save(user);
 
 
         // find Users
