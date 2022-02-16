@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import {getNonSmoked} from "../Service/AxiosServiceToBackend";
+import {Box} from "@mui/material";
 
 export default function ContainerNonSmokedCigarettes(){
 
@@ -18,5 +19,6 @@ export default function ContainerNonSmokedCigarettes(){
                 <h6>Not smoked!</h6>
             </div>
         </div>
+
     )
 }

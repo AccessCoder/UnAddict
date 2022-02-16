@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import {getMoneySaved} from "../Service/AxiosServiceToBackend";
+import {Box} from "@mui/material";
 
 export default function ContainerSavedMoney() {
 
@@ -18,5 +19,6 @@ export default function ContainerSavedMoney() {
                 <h6>Saved by not smoking</h6>
             </div>
         </div>
+
     )
 }

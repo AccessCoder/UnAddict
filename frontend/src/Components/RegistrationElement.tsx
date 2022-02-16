@@ -1,6 +1,5 @@
 import {FormEvent, useState} from "react";
-import {Button, FormControl, InputLabel, Link, MenuItem, TextField} from "@mui/material";
-import {Select} from "@mui/material";
+import {Button, FormControl, InputLabel, Link, MenuItem, Select, TextField} from "@mui/material";
 import axios from "axios";
 
 export default function RegistrationElement() {
