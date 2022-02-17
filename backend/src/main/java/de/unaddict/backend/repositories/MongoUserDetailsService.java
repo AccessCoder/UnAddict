@@ -1,7 +1,6 @@
-package de.unaddict.backend.components;
+package de.unaddict.backend.repositories;
 
 import de.unaddict.backend.modules.UserData;
-import de.unaddict.backend.repositories.IUserDataRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -14,7 +13,7 @@ public class MongoUserDetailsService implements UserDetailsService {
 
     public static final String AUTHORITY_API_READWRITE = "API_READWRITE";
 
-    private final IUserDataRepository repository;
+    private static IUserDataRepository repository;
 
     public MongoUserDetailsService(IUserDataRepository repository) {
         this.repository = repository;
@@ -29,7 +28,7 @@ public class MongoUserDetailsService implements UserDetailsService {
         return user.get();
     }
 
-    public UserData loadUserByMail(String userEmail) throws UsernameNotFoundException{
+    public static UserData loadUserByMail(String userEmail) throws UsernameNotFoundException{
         Optional<UserData> user = repository.findByEmail(userEmail);
         if (user.isEmpty()){
             throw new UsernameNotFoundException("User not found");

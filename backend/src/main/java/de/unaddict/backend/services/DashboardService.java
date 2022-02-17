@@ -1,6 +1,6 @@
 package de.unaddict.backend.services;
 
-import de.unaddict.backend.components.MongoUserDetailsService;
+import de.unaddict.backend.repositories.MongoUserDetailsService;
 import de.unaddict.backend.modules.SmokeDataAPI;
 import de.unaddict.backend.modules.UserData;
 import org.springframework.stereotype.Service;
