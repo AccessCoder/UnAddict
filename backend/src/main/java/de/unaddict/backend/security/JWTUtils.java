@@ -31,9 +31,9 @@ public class JWTUtils {
         return claims.getSubject();
     }
 
-    public Boolean validateToken(String token, String username){
+    public Boolean validateToken(String token, String userEmail){
         String tokenName = extractUserEMail(token);
-        return (tokenName.equals(username) && !isTokenExpired(token));
+        return (tokenName.equals(userEmail) && !isTokenExpired(token));
     }
 
     public boolean isTokenExpired(String token){

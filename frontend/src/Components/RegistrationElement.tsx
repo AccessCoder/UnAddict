@@ -1,9 +1,6 @@
 import {FormEvent, useState} from "react";
-import {Button, FormControl, InputLabel, Link, MenuItem, TextField} from "@mui/material";
-import { Select } from "@mui/material";
+import {Button, FormControl, InputLabel, Link, MenuItem, Select, TextField} from "@mui/material";
 import axios from "axios";
-// @ts-ignore
-import {useHistory} from "react-router-dom";
 
 export default function RegistrationElement() {
     const [userEmail, setUserEmail] = useState("");
@@ -11,16 +8,17 @@ export default function RegistrationElement() {
     const [userPassword2, setUserPassword2] = useState("");
     const [userName, setUserName] = useState("");
     const [userAge, setUserAge] = useState(0);
-    const [userSmoked, setUserSmoked] = useState(0);
-    const [userYearsSmoked, setUserYearsSmoked] = useState(0);
-    const [userSmokeCategory, setUserSmokeCategory] = useState(0);
+    const [userSmoked, setUserSmoked] = useState("0");
+    const [userYearsSmoked, setUserYearsSmoked] = useState("0");
+    const [userSmokeCategory, setUserSmokeCategory] = useState("0");
+
     const [serverError, setServerError] = useState("")
     const [passwordError, setPasswordError] = useState("")
     const [emailError, setEmailError] = useState("")
-    const [loading, setLoading] = useState(true||false)
-    const history = useHistory()
+    const [loading, setLoading] = useState(true || false)
+    // const history = useHistory()
 
-    const submitHandler = (event:FormEvent<HTMLFormElement>) => {
+    const submitHandler = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
 
         if (validatePasswords(userPassword1, userPassword2) && validateEmail(userEmail)) {
@@ -29,10 +27,10 @@ export default function RegistrationElement() {
                 "email": userEmail,
                 "name": userName,
                 "password": userPassword1,
-                "age":userAge,
-                "cigarettesSmokedEachDayLastYear":userSmoked,
-                "yearsSmoked":userYearsSmoked,
-                "cigarettesBranchCategory":userSmokeCategory
+                "age": userAge,
+                "cigarettesSmokedEachDayLastYear": userSmoked,
+                "yearsSmoked": userYearsSmoked,
+                "cigarettesBranchCategory": userSmokeCategory
             }
             axios.post("/user/register", credentials)
                 .then((response) => response.data)
@@ -41,7 +39,7 @@ export default function RegistrationElement() {
                     return data
                 })
                 .then((data) => {
-                    history.push("/registration/done")
+                    // history.push("/registration/done")
                     return data
                 })
                 .catch((error) => {
@@ -56,7 +54,7 @@ export default function RegistrationElement() {
         }
     }
 
-    const validateEmail = (email:string) => {
+    const validateEmail = (email: string) => {
         if (!/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)) {
             setEmailError("Email not valid")
             return false
@@ -65,7 +63,7 @@ export default function RegistrationElement() {
         return true
     }
 
-    const validatePasswords = (password1:string, password2:string) => {
+    const validatePasswords = (password1: string, password2: string) => {
         if (password1.length < 8) {
             setPasswordError("Password too short")
             return false
@@ -78,7 +76,7 @@ export default function RegistrationElement() {
             setPasswordError("lowercase letter required")
             return false
         }
-        if (!/[A-Z]/.test(password1)){
+        if (!/[A-Z]/.test(password1)) {
             setPasswordError("uppercase letter required")
             return false
         }
@@ -102,13 +100,24 @@ export default function RegistrationElement() {
     return (
         <div className={"registrationElements"}>
             <form onSubmit={submitHandler}>
-            <TextField variant="outlined" label="E-Mail" type="email" value={userEmail}/>
-            <TextField variant="filled" label="Password" type="password" value={userPassword1}/>
-            <TextField variant="filled" label="Repeat Password" type="repeat_password" value={userPassword2}/>
-                <TextField variant="outlined" label="Name" type="name" value={userName}/>
-                <TextField variant="outlined" label="Age" type="age" value={userAge}/>
-                <TextField variant="outlined" label="How many cigarettes do you smoked each day approximately in the last year?" type="cigarettesSmokedEachDayLastYear" value={userSmoked}/>
-                <TextField variant="outlined" label="Years smoking" type="yearsSmoked" value={userYearsSmoked}/>
+                <TextField required variant="outlined" label="E-Mail" type="email" value={userEmail}
+                           onChange={(e) => setUserEmail(e.target.value)}/>
+                <TextField required variant="filled" label="Password" type="password" value={userPassword1}
+                           onChange={(e) => setUserPassword1(e.target.value)}/>
+                <TextField required variant="filled" label="Repeat Password" type="repeat_password" value={userPassword2}
+                           onChange={(e) => setUserPassword2(e.target.value)}/>
+                <TextField required variant="outlined" label="Name" type="name" value={userName}
+                           onChange={(e) => setUserName(e.target.value)}/>
+
+                <TextField required variant="outlined" label="Age" type="age" value={userAge}
+                           onChange={(e) => setUserAge(parseInt(e.target.value))}/>
+
+                <TextField required variant="outlined"
+                           label="How many cigarettes do you smoked each day approximately in the last year?"
+                           type="cigarettesSmokedEachDayLastYear" value={userSmoked}
+                           onChange={(e) => setUserSmoked(e.target.value)}/>
+                <TextField required variant="outlined" label="Years smoking" type="yearsSmoked" value={userYearsSmoked}
+                           onChange={(e) => setUserYearsSmoked(e.target.value)}/>
                 <FormControl fullWidth>
                     <InputLabel id="demo-simple-select-label">Age</InputLabel>
                     <Select
@@ -116,13 +125,14 @@ export default function RegistrationElement() {
                         id="demo-simple-select"
                         value={userSmokeCategory}
                         label="Age"
+
                     >
                         <MenuItem value={1}>Premium (Marlboro, Lucky Strike, etc.)</MenuItem>
                         <MenuItem value={2}>Discounter (Boston, Edison, Giants, etc.)</MenuItem>
                         <MenuItem value={3}>Selfmade</MenuItem>
                     </Select>
                 </FormControl>
-            <Button variant="outlined">Register</Button>
+                <Button variant="outlined">Register</Button>
             </form>
             <Link href="login" underline="hover">
                 {'Already signed up? - Here´s the Login'}

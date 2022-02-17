@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import {getLifetime} from "../Service/AxiosServiceToBackend";
+import {Box} from "@mui/material";
 
 export default function ContainerLifetimeGained() {
 
@@ -18,5 +19,6 @@ export default function ContainerLifetimeGained() {
                 <h6>Lifetime gained</h6>
             </div>
         </div>
+
     )
 }

@@ -10,6 +10,7 @@ import de.unaddict.backend.security.EmailConfig;
 import de.unaddict.backend.security.EmailDto;
 import de.unaddict.backend.security.JWTUtils;
 import io.jsonwebtoken.Claims;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.mail.SimpleMailMessage;
@@ -17,22 +18,19 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.text.ParseException;
+import java.time.Instant;
 import java.util.HashMap;
 import java.util.Optional;
 
+@AllArgsConstructor
 @Service
 public class UserService implements IUserService {
 
     private final IUserDataRepository repository;
     private final EmailConfig emailConfig;
     private final JWTUtils jwtUtils;
+    private final MongoUserDetailsService service;
 
-    @Autowired
-    public UserService(IUserDataRepository repository, EmailConfig emailConfig, JWTUtils jwtUtils) {
-        this.repository = repository;
-        this.emailConfig = emailConfig;
-        this.jwtUtils = jwtUtils;
-    }
 
     @Override
     public UserData registerNewUserAccount(UserDto userDto) throws UserAlreadyExistException, ParseException {
@@ -44,8 +42,8 @@ public class UserService implements IUserService {
         UserData user = new UserData(userDto.getEmail());
         user.setPassword(userDto.getPassword());
         user.setName(userDto.getName());
-        user.setSurname(userDto.getSurname());
         user.setAge(userDto.getAge());
+        user.setUserRegistrationTime(Instant.now());
         user.setCigarettesSmokedEachDayLastYear(userDto.getCigarettesSmokedEachDayLastYear());
         user.setCigarettesBranchCategory(userDto.getCigarettesBranchCategory());
         user.setYearsSmoked(userDto.getYearsSmoked());
@@ -53,7 +51,7 @@ public class UserService implements IUserService {
         return repository.save(user);
     }
     private boolean emailExist(String email) {
-        return MongoUserDetailsService.loadUserByMail(email) != null;
+        return service.loadUserByMail(email) != null;
     }
 
     public void startEmailVerification(String email) {
