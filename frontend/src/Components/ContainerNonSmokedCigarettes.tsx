@@ -1,6 +1,5 @@
 import {useEffect, useState} from "react";
 import {getNonSmoked} from "../Service/AxiosServiceToBackend";
-import {Box} from "@mui/material";
 
 export default function ContainerNonSmokedCigarettes(){
 
