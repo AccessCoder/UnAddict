@@ -10,4 +10,5 @@ export default interface IUserData{
     //api relevant Data
     cigarettesSmokedEachDayLastYear:number;
     yearsSmoked:number;
+    cigarettesBranchCategory:number;
 }

@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 
 export default function ContainerTimeSmokeFree(){
-    const [timeSmokeFree, setTimeSmokeFree] = useState(0)
+    const [timeSmokeFree, setTimeSmokeFree] = useState("0")
 
     useEffect(() => {
         axios.get('/api/timesmokefree')
@@ -14,7 +14,7 @@ export default function ContainerTimeSmokeFree(){
     return(
         <div className={"outerContainer"}>
             <div className={"textContainer"}>
-                <h3>{timeSmokeFree} Days</h3>
+                <h3>{timeSmokeFree}</h3>
                 <h6>Without smoking</h6>
             </div>
         </div>
