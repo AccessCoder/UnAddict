@@ -13,11 +13,12 @@ import java.util.Collection;
 @AllArgsConstructor
 public class UserData implements UserDetails {
 
-    public UserData(String eMail, String name, String password, int cigarettesSmokedEachDayLastYear, int cigarettesBranchCategory, int yearsSmoked, Collection<? extends GrantedAuthority> authorities) {
+    public UserData(String eMail, String name, String password, int age, int cigarettesSmokedEachDayLastYear, int cigarettesBranchCategory, int yearsSmoked, Collection<? extends GrantedAuthority> authorities) {
         this.email = eMail;
         this.name = name;
         this.password=password;
-//        this.userRegistrationTime=""
+        this.age=age;
+        this.userRegistrationTime="01-01-2022 00:00:00";
         this.cigarettesSmokedEachDayLastYear = cigarettesSmokedEachDayLastYear;
         this.cigarettesBranchCategory = cigarettesBranchCategory;
         this.yearsSmoked = yearsSmoked;
@@ -30,7 +31,7 @@ public class UserData implements UserDetails {
     String password;
     String name;
     String surname;
-    String age;
+    int age;
     String userRegistrationTime;
 
     int cigarettesSmokedEachDayLastYear;

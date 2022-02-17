@@ -23,9 +23,9 @@ public class DashboardController {
     }
 
     @GetMapping("/lifetime")
-    public int getGainedLifetime(UsernamePasswordAuthenticationToken authToken) {
+    public String getGainedLifetime(UsernamePasswordAuthenticationToken authToken) throws ParseException {
         UserData user = (UserData) authToken.getPrincipal();
-        return 5;
+        return service.getLifetimeSaved(user);
     }
 
     @GetMapping("/nonsmoked")
@@ -37,7 +37,7 @@ public class DashboardController {
     @GetMapping("/savedmoney")
     public double getSavedMoney(UsernamePasswordAuthenticationToken authToken) throws ParseException {
         UserData user = (UserData) authToken.getPrincipal();
-        return service.getNonSmokedCigarettes(user)*5;
+        return service.getMoneySaved(user);
     }
 
     @GetMapping("timesmokefree")

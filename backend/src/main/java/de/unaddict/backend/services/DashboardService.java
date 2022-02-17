@@ -26,5 +26,11 @@ public class DashboardService {
         return api.getNonSmokedCigarettes(user.getCigarettesSmokedEachDayLastYear(), user.getUserRegistrationTime());
     }
 
+    public double getMoneySaved(UserData user) throws ParseException {
+        return api.getMoneySavedPerCigarette(user.getCigarettesBranchCategory())* api.getNonSmokedCigarettes(user.getCigarettesSmokedEachDayLastYear(), user.getUserRegistrationTime());
+    }
 
+    public String getLifetimeSaved(UserData user) throws ParseException {
+        return api.getLifetimeSaved(user.getAge(), user.getUserRegistrationTime());
+    }
 }

@@ -3,7 +3,7 @@ import {getLifetime} from "../Service/AxiosServiceToBackend";
 
 export default function ContainerLifetimeGained() {
 
-    const [gainedLifetime, setGainedLifetime] = useState(0)
+    const [gainedLifetime, setGainedLifetime] = useState("")
 
     useEffect(() => {
         getLifetime()
@@ -14,7 +14,7 @@ export default function ContainerLifetimeGained() {
     return (
         <div className={"outerContainer"}>
             <div className={"textContainer"}>
-                <h3>{gainedLifetime} Days</h3>
+                <h3>{gainedLifetime}</h3>
                 <h6>Lifetime gained</h6>
             </div>
         </div>
