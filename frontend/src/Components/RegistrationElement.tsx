@@ -12,17 +12,16 @@ export default function RegistrationElement() {
     const [userYearsSmoked, setUserYearsSmoked] = useState("0");
     const [userSmokeCategory, setUserSmokeCategory] = useState("0");
 
-    const [serverError, setServerError] = useState("")
-    const [passwordError, setPasswordError] = useState("")
-    const [emailError, setEmailError] = useState("")
-    const [loading, setLoading] = useState(true || false)
-    // const history = useHistory()
+    const [, setServerError] = useState("")
+    const [, setPasswordError] = useState("")
+    const [, setEmailError] = useState("")
+    const [, setLoading] = useState(true || false)
 
     const submitHandler = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
 
         if (validatePasswords(userPassword1, userPassword2) && validateEmail(userEmail)) {
-            setLoading(true)
+           setLoading(true)
             const credentials = {
                 "email": userEmail,
                 "name": userName,
@@ -125,7 +124,7 @@ export default function RegistrationElement() {
                         id="demo-simple-select"
                         value={userSmokeCategory}
                         label="Age"
-
+                        onChange={(e) => setUserSmokeCategory(e.target.value)}
                     >
                         <MenuItem value={1}>Premium (Marlboro, Lucky Strike, etc.)</MenuItem>
                         <MenuItem value={2}>Discounter (Boston, Edison, Giants, etc.)</MenuItem>

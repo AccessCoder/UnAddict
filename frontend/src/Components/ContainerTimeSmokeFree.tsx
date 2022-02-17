@@ -1,6 +1,5 @@
 import {useEffect, useState} from "react";
 import {getTimeSmokeFree} from "../Service/AxiosServiceToBackend";
-import {Box} from "@mui/material";
 
 export default function ContainerTimeSmokeFree(){
     const [timeSmokeFree, setTimeSmokeFree] = useState("0")
