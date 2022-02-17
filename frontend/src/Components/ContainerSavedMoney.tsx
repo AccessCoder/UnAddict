@@ -1,13 +1,12 @@
 import {useEffect, useState} from "react";
-import axios from "axios";
+import {getMoneySaved} from "../Service/AxiosServiceToBackend";
 
 export default function ContainerSavedMoney() {
 
     const [savedMoney, setSavedMoney] = useState(0)
 
     useEffect(() => {
-        axios.get('/api/savedmoney')
-            .then(response => response.data)
+        getMoneySaved()
             .then(savedMoney => setSavedMoney(savedMoney))
             .catch(error => console.error(error))
     }, [])

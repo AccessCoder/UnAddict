@@ -1,7 +1,8 @@
 package de.unaddict.backend.services;
 
+import de.unaddict.backend.components.MongoUserDetailsService;
 import de.unaddict.backend.modules.SmokeDataAPI;
-import org.springframework.beans.factory.annotation.Autowired;
+import de.unaddict.backend.modules.UserData;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
@@ -9,20 +10,21 @@ import java.text.ParseException;
 @Service
 public class DashboardService {
 
-    @Autowired
-     final SmokeDataAPI api;
+    private final MongoUserDetailsService mongoUserDetailsService;
+    private final SmokeDataAPI api;
 
-    public DashboardService(SmokeDataAPI api) {
+    public DashboardService(MongoUserDetailsService mongoUserDetailsService, SmokeDataAPI api) {
+        this.mongoUserDetailsService = mongoUserDetailsService;
         this.api = api;
     }
 
-
-
-    public String getTimeNotSmoked(String testTime) throws ParseException {
-        return api.getTimeNotSmoked(testTime);
+    public String getTimeNotSmoked(UserData user) throws ParseException {
+        return api.getTimeNotSmoked(user.getUserRegistrationTime());
     }
 
-    public double getNonSmokedCigarettes(int testValue){
-        return api.getNonSmokedCigarettes(testValue);
+    public long getNonSmokedCigarettes(UserData user) throws ParseException {
+        return api.getNonSmokedCigarettes(user.getCigarettesSmokedEachDayLastYear(), user.getUserRegistrationTime());
     }
+
+
 }

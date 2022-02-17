@@ -1,12 +1,11 @@
 import {useEffect, useState} from "react";
-import axios from "axios";
+import {getTimeSmokeFree} from "../Service/AxiosServiceToBackend";
 
 export default function ContainerTimeSmokeFree(){
     const [timeSmokeFree, setTimeSmokeFree] = useState("0")
 
     useEffect(() => {
-        axios.get('/api/timesmokefree')
-            .then(response => response.data)
+        getTimeSmokeFree()
             .then(timeSmokeFree => setTimeSmokeFree(timeSmokeFree))
             .catch(error => console.error(error))
     }, [])

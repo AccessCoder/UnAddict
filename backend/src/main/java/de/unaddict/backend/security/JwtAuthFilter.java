@@ -34,11 +34,11 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filter) throws ServletException, IOException {
         final String token = getToken(request);
         if (token != null) try {
-            final String username = jwtUtils.extractUserName(token);
-            if ((username != null)
+            final String userEMail = jwtUtils.extractUserEMail(token);
+            if ((userEMail != null)
                     && (SecurityContextHolder.getContext().getAuthentication() == null)) {
                 //Lade User aus DB
-                final UserDetails userDetails = userService.loadUserByUsername(username);
+                final UserDetails userDetails = userService.loadUserByUsername(userEMail);
                 if (jwtUtils.validateToken(token, userDetails.getUsername())){
                     //Info an Spring, das Anmeldung korrekt ist!
                     final UsernamePasswordAuthenticationToken authToken =

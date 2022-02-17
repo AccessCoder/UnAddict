@@ -14,8 +14,8 @@ import java.util.Map;
 @Component
 public class JWTUtils {
 
-    @Value(value = "${SECRET_KEY}")
-    private String secret;
+//    @Value(value = "${SECRET_KEY}")
+    private String secret = "theCakeIsALie!!";
 
     public String createToken(Map<String, Object> claims, String subject){
         return Jwts.builder()
@@ -27,13 +27,13 @@ public class JWTUtils {
                 .compact();
     }
 
-    public String extractUserName(String token){
+    public String extractUserEMail(String token){
         Claims claims = extractAllClaims(token);
         return claims.getSubject();
     }
 
     public Boolean validateToken(String token, String username){
-        String tokenName = extractUserName(token);
+        String tokenName = extractUserEMail(token);
         return (tokenName.equals(username) && !isTokenExpired(token));
     }
 
