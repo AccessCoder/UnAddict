@@ -11,6 +11,7 @@ export default function LoginElement(){
         const loginData: ILoginData = {email: userEMail, password: userPassword}
         postLogin(loginData)
             .then(response => localStorage.setItem(TOKEN_STORAGE_KEY, response.data))
+            .then(() => window.location.href="/dashboard")
             .catch(error => console.error(error))
     }
 

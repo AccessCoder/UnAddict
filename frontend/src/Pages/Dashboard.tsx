@@ -9,16 +9,18 @@ import "./Dashboard.css"
 export default function Dashboard() {
     return (
         <div>
-            <Header/>
+            <div className="head">
+                <Header/>
+            </div>
             <div className={"navBox"}>
                 <NavigationElement/>
             </div>
 
             <div className={"ContainerArea"}>
-                <div className={"box"}> <ContainerLifetimeGained/> </div>
-                <div className={"box"}> <ContainerSavedMoney/> </div>
-                <div className={"box"}> <ContainerTimeSmokeFree/> </div>
-                <div className={"box"}> <ContainerNonSmokedCigarettes/> </div>
+                <div className={"box"}><ContainerLifetimeGained/></div>
+                <div className={"box"}><ContainerSavedMoney/></div>
+                <div className={"box"}><ContainerTimeSmokeFree/></div>
+                <div className={"box"}><ContainerNonSmokedCigarettes/></div>
             </div>
         </div>
     );

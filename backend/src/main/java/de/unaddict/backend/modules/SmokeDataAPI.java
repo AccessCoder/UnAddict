@@ -26,7 +26,7 @@ public class SmokeDataAPI {
         long minute_diff = timeSpanNonSmoked.abs().toMinutesPart();
         long seconds_diff = timeSpanNonSmoked.abs().toSecondsPart();
 
-        return days_diff + " Days " + hour_diff + " Hours " + minute_diff + " Minutes " + seconds_diff + " Seconds";
+        return days_diff + " Days \n" + hour_diff + " Hours " + "\n" + minute_diff + " Minutes " + "\n" + seconds_diff + " Seconds";
     }
 
     /**

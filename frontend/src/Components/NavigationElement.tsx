@@ -3,6 +3,8 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import {TOKEN_STORAGE_KEY} from "../Service/AxiosServiceToBackend";
+import "./NavigationElement.css"
+
 
 export default function NavigationElement() {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
