@@ -7,7 +7,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.text.ParseException;
 import java.time.Instant;
 import java.util.Collection;
 

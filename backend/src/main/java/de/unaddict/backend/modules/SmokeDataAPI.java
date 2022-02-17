@@ -39,7 +39,7 @@ public class SmokeDataAPI {
         double cigaretteEachMillisecond = cigarettesSmokedEachDayLastYear * 1.0 / 86400000;
 
         timeSpanNonSmoked = Duration.between(Instant.now(), userRegistrationTime);
-        long timeSpanNonSmokedInMillis= timeSpanNonSmoked.abs().toMillis();
+        long timeSpanNonSmokedInMillis = timeSpanNonSmoked.abs().toMillis();
         double nonSmoked = cigaretteEachMillisecond * timeSpanNonSmokedInMillis;
         return ((long) nonSmoked);
 
@@ -79,41 +79,52 @@ public class SmokeDataAPI {
 
     public String getLifetimeSaved(int ageOfUser, Instant userRegistrationTime) {
         int lost_years = 7;
+        double factor = 5 * 365d;
 
         timeSpanNonSmoked = Duration.between(Instant.now(), userRegistrationTime);
-        long timeSpanNonSmokedInMillis= timeSpanNonSmoked.abs().toMillis();
+        long timeSpanNonSmokedInMillis = timeSpanNonSmoked.abs().toMillis();
 
         double lifetimeGained;
 
         if (ageOfUser <= 30 && ageOfUser > 0) {
             double timeYouCanGetBack = (lost_years * 365) * 0.99;
-            lifetimeGained = (timeYouCanGetBack * 86400000)*timeSpanNonSmokedInMillis;
+            factor = timeYouCanGetBack / factor;
+            lifetimeGained = timeSpanNonSmokedInMillis * factor;
+
             if (lifetimeGained >= (timeYouCanGetBack * 86400000)) {
                 lifetimeGained = (timeYouCanGetBack * 86400000);
             }
 
         } else if (ageOfUser <= 40 && ageOfUser > 30) {
             double timeYouCanGetBack = (lost_years * 365) * 0.90;
-            lifetimeGained = (timeYouCanGetBack * 86400000)*timeSpanNonSmokedInMillis;
+            factor = timeYouCanGetBack / factor;
+            lifetimeGained = timeSpanNonSmokedInMillis * factor;
+
             if (lifetimeGained >= (timeYouCanGetBack * 86400000)) {
                 lifetimeGained = (timeYouCanGetBack * 86400000);
             }
 
         } else if (ageOfUser >= 45 && ageOfUser <= 54) {
             double timeYouCanGetBack = ((lost_years - 2) * 365);
-            lifetimeGained = (timeYouCanGetBack * 86400000)*timeSpanNonSmokedInMillis;
+            factor = timeYouCanGetBack / factor;
+            lifetimeGained = timeSpanNonSmokedInMillis * factor;
+
             if (lifetimeGained >= (timeYouCanGetBack * 86400000)) {
                 lifetimeGained = (timeYouCanGetBack * 86400000);
             }
         } else if (ageOfUser >= 55 && ageOfUser <= 64) {
             double timeYouCanGetBack = ((lost_years - 3) * 365);
-            lifetimeGained = (timeYouCanGetBack * 86400000)*timeSpanNonSmokedInMillis;
+            factor = timeYouCanGetBack / factor;
+            lifetimeGained = timeSpanNonSmokedInMillis * factor;
+
             if (lifetimeGained >= (timeYouCanGetBack * 86400000)) {
                 lifetimeGained = (timeYouCanGetBack * 86400000);
             }
         } else {
             double timeYouCanGetBack = ((lost_years - 5) * 365);
-            lifetimeGained = (timeYouCanGetBack * 86400000)*timeSpanNonSmokedInMillis;
+            factor = timeYouCanGetBack / factor;
+            lifetimeGained = timeSpanNonSmokedInMillis * factor;
+
             if (lifetimeGained >= (timeYouCanGetBack * 86400000)) {
                 lifetimeGained = (timeYouCanGetBack * 86400000);
             }
