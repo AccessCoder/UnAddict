@@ -133,7 +133,7 @@ export default function RegistrationElement() {
                 </FormControl>
                 <Button variant="outlined">Register</Button>
             </form>
-            <Link href="login" underline="hover">
+            <Link href="/" underline="hover">
                 {'Already signed up? - Here´s the Login'}
             </Link>
         </div>
