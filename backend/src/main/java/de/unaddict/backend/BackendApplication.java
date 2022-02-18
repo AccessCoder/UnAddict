@@ -30,27 +30,12 @@ public class BackendApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-//        repository.deleteAll();
-//
-//        //add Users
-//        String encodedPassword = encoder.encode("tom123");
-//        UserData user = new UserData("tom@test.de", "tom", encodedPassword, 20, 20, 3, 12, List.of(new SimpleGrantedAuthority(MongoUserDetailsService.AUTHORITY_API_READWRITE)));
-//        user.setUserRegistrationTime(Instant.now());
-//        repository.save(user);
 
-
-        // find Users
-        System.out.println("Customers found with findAll():");
-        System.out.println("-------------------------------");
-        for (UserData userData : repository.findAll()) {
-            System.out.println(userData);
-        }
-        System.out.println();
-
-        // fetch an individual customer
-        System.out.println("Customer found with findByUsername('tommy'):");
-        System.out.println("--------------------------------");
-        System.out.println(repository.findByName("tommy"));
+        //add Users
+        String encodedPassword = encoder.encode("tom123");
+        UserData user = new UserData("tom@test.de", "tom", encodedPassword, 20, 20, 2, 12, List.of(new SimpleGrantedAuthority(MongoUserDetailsService.AUTHORITY_API_READWRITE)));
+        user.setUserRegistrationTime(Instant.now().minusSeconds(2592000));
+        repository.save(user);
 
     }
 
