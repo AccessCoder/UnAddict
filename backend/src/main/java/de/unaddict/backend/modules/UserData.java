@@ -48,7 +48,7 @@ public class UserData implements UserDetails {
     public boolean isAccountNonExpired= true;
     public boolean isAccountNonLocked= true;
     public boolean isCredentialsNonExpired= true;
-    public boolean isEnabled= false;
+    public boolean isEnabled= true;//TODO change back to false
 
 
     @Override
