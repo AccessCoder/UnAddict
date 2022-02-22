@@ -3,6 +3,7 @@ import {useState} from "react";
 import ILoginData from "../Models/ILoginData";
 import {postLogin, TOKEN_STORAGE_KEY} from "../Service/AxiosServiceToBackend";
 import "./LoginElement.css"
+import logo from "../Pictures/cigarette.png"
 
 export default function LoginElement() {
     const [userEMail, setUserEMail] = useState("");
@@ -18,14 +19,13 @@ export default function LoginElement() {
 
     return (
         <div className={"loginComponentsMaster"}>
+            <h1>Un<img src={logo} alt={"cigarette"} style={{"width": "40px"}}/>ddict</h1>
             <div className={"loginElements"}>
-                <br/>
                 <TextField variant="outlined" label="E-Mail" type="eMail" value={userEMail}
                            onChange={(e) => setUserEMail(e.target.value)}/>
                 <TextField variant="filled" label="Password" type="password" value={userPassword}
                            onChange={(e) => setUserPassword(e.target.value)}/>
             </div>
-            <br/>
             <div className={"loginButton"}>
                 <Button onClick={() => login()} variant="outlined">Login</Button>
                 <br/>
