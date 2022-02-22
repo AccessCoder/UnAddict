@@ -4,6 +4,8 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import {TOKEN_STORAGE_KEY} from "../Service/AxiosServiceToBackend";
 import "./NavigationElement.css"
+import {IconButton} from "@mui/material";
+import menu from "../Pictures/user.png"
 
 
 export default function NavigationElement() {
@@ -31,7 +33,7 @@ export default function NavigationElement() {
                 aria-expanded={open ? 'true' : undefined}
                 onClick={handleClick}
             >
-                Menu
+                <img src={menu} alt={"button"} style={{"width": "34px"}}/>
             </Button>
             <Menu
                 id="basic-menu"
