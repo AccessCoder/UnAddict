@@ -6,17 +6,17 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Dashboard from "./Pages/Dashboard";
 
 export default function App() {
-  return (
-    <div className="App">
-        <BrowserRouter>
-            <Routes>
-                <Route path={"/"} element={<LoginPage />} />
-                <Route path={"/registration"} element={<RegistrationPage />} />
-                <Route path={"/dashboard"} element={<Dashboard />} />
-            </Routes>
-        </BrowserRouter>
-    </div>
-  );
+    return (
+        <div className="App">
+                <BrowserRouter>
+                    <Routes>
+                        <Route path={"/"} element={<LoginPage/>}/>
+                        <Route path={"/registration"} element={<RegistrationPage/>}/>
+                        <Route path={"/dashboard"} element={<Dashboard/>}/>
+                    </Routes>
+                </BrowserRouter>
+        </div>
+    );
 }
 
 

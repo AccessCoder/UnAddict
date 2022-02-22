@@ -19,7 +19,7 @@ export default function NavigationElement() {
     const logout = () => {
         localStorage.removeItem(TOKEN_STORAGE_KEY);
         handleClose()
-        window.location.replace('/login')
+        window.location.replace('/')
     }
 
     return (

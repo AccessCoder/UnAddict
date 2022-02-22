@@ -32,10 +32,10 @@ public class BackendApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
         //add Users
-        String encodedPassword = encoder.encode("tom123");
-        UserData user = new UserData("tom@test.de", "tom", encodedPassword, 20, 20, 2, 12, List.of(new SimpleGrantedAuthority(MongoUserDetailsService.AUTHORITY_API_READWRITE)));
-        user.setUserRegistrationTime(Instant.now().minusSeconds(2592000));
-        repository.save(user);
+//        String encodedPassword = encoder.encode("tom123");
+//        UserData user = new UserData("tom@test.de", "tom", encodedPassword, 20, 20, 2, 12, List.of(new SimpleGrantedAuthority(MongoUserDetailsService.AUTHORITY_API_READWRITE)));
+//        user.setUserRegistrationTime(Instant.now().minusSeconds(2592000));
+//        repository.save(user);
 
     }
 
