@@ -22,7 +22,7 @@ export default class DevelopingProgressBar extends React.Component {
             <ProgressBar
                 percent={60}
                 stepPositions={[0, 8, 17, 27, 38, 55, 70, 100]}
-                filledBackground="linear-gradient(to right, #fefb72, #f0bb31)"
+                filledBackground="linear-gradient(to right, #ffa640, #ff8c00)"
             >
                 <Step transition="scale">
                     {({ accomplished }:any) => (

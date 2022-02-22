@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import {getNonSmoked} from "../Service/AxiosServiceToBackend";
+import smokeFree from "../Pictures/quit-smoking.png"
 
 export default function ContainerNonSmokedCigarettes(){
 
@@ -14,6 +15,7 @@ export default function ContainerNonSmokedCigarettes(){
     return(
         <div className={"outerContainer"}>
             <div className={"textContainer"}>
+                <img src={smokeFree} alt={"QuitSmoke"} style={{"width": "40px"}}/>
                 <h3>{nonSmoked} Cigarettes</h3>
                 <h6>Not smoked!</h6>
             </div>

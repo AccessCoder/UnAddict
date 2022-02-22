@@ -11,7 +11,7 @@
 }
 
 .box {
-    background-color: #333;
+    background:linear-gradient(#ffa640, #ff8c00);
     padding: 20px;
     border-radius: 10px;
     color: #fff;
@@ -32,7 +32,9 @@
     display: flex;
     justify-content: center;
     padding: 64px;
+    margin: 100px;
 }
+
 
 @media (max-width: 430px) {
     .ContainerArea{
@@ -54,6 +56,7 @@
         justify-content: center;
         font-size: 13px;
         font-family: sans-serif;
+        box-shadow: 3px 3px black;
     }
 
     .head{
@@ -61,11 +64,11 @@
     }
 
     .shareArea{
-        display: flex;
-        justify-content: flex-start;
-        align-content: flex-end;
-        padding: 60px;
-        margin: -5px;
+        padding: initial;
+        width: max-content;
+        position: relative;
+        left: 145px;
+        top: -8px;
     }
 
     .ProgressBar{

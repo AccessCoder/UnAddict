@@ -27,20 +27,17 @@ export default function Dashboard() {
             <div className={"navBox"}>
                 <NavigationElement/>
             </div>
-
-            <div className={"ShareContent"}>
-                <div className={"ContainerArea"}>
-                    <div className={"box"}><ContainerLifetimeGained/></div>
-                    <div className={"box"}><ContainerSavedMoney/></div>
-                    <div className={"box"}><ContainerTimeSmokeFree/></div>
-                    <div className={"box"}><ContainerNonSmokedCigarettes/></div>
+            <div className={"ContainerArea"}>
+                <div className={"box"}><ContainerLifetimeGained/></div>
+                <div className={"box"}><ContainerSavedMoney/></div>
+                <div className={"box"}><ContainerTimeSmokeFree/></div>
+                <div className={"box"}><ContainerNonSmokedCigarettes/></div>
+            </div>
+                <div className={"shareArea"}>
+                    <FacebookShareButton url={targetUrl}><FacebookIcon size={32} round={true}/></FacebookShareButton>
+                    <RedditShareButton url={targetUrl}> <RedditIcon size={32} round={true}/> </RedditShareButton>
+                    <TwitterShareButton url={targetUrl}><TwitterIcon size={32} round={true}/></TwitterShareButton>
                 </div>
-            </div>
-            <div className={"shareArea"}>
-                <FacebookShareButton url={targetUrl}><FacebookIcon size={32} round={true}/></FacebookShareButton>
-                <RedditShareButton url={targetUrl}> <RedditIcon size={32} round={true}/> </RedditShareButton>
-                <TwitterShareButton url={targetUrl}><TwitterIcon size={32} round={true}/></TwitterShareButton>
-            </div>
             <div className="ProgressBar">
                 <DevelopingProgressBar/>
             </div>
