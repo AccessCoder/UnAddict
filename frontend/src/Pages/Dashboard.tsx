@@ -35,14 +35,14 @@ export default function Dashboard() {
                     <div className={"box"}><ContainerTimeSmokeFree/></div>
                     <div className={"box"}><ContainerNonSmokedCigarettes/></div>
                 </div>
-                <div className={"shareArea"}>
-                    <FacebookShareButton url={targetUrl}><FacebookIcon size={32} round={true}/></FacebookShareButton>
-                    <RedditShareButton url={targetUrl}> <RedditIcon size={32} round={true}/> </RedditShareButton>
-                    <TwitterShareButton url={targetUrl}><TwitterIcon size={32} round={true}/></TwitterShareButton>
-                </div>
-                <div className="ProgressBar">
-                    <DevelopingProgressBar/>
-                </div>
+            </div>
+            <div className={"shareArea"}>
+                <FacebookShareButton url={targetUrl}><FacebookIcon size={32} round={true}/></FacebookShareButton>
+                <RedditShareButton url={targetUrl}> <RedditIcon size={32} round={true}/> </RedditShareButton>
+                <TwitterShareButton url={targetUrl}><TwitterIcon size={32} round={true}/></TwitterShareButton>
+            </div>
+            <div className="ProgressBar">
+                <DevelopingProgressBar/>
             </div>
         </div>
     );

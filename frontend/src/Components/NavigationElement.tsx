@@ -4,7 +4,6 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import {TOKEN_STORAGE_KEY} from "../Service/AxiosServiceToBackend";
 import "./NavigationElement.css"
-import {IconButton} from "@mui/material";
 import menu from "../Pictures/user.png"
 
 

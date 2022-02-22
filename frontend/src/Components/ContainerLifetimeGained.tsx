@@ -12,7 +12,7 @@ export default function ContainerLifetimeGained() {
     }, [])
 
     return (
-        <div className={"outerContainer"}>
+        <div className={"outerContainer"} >
             <div className={"textContainer"}>
                 <h3>{gainedLifetime}</h3>
                 <h6>Lifetime gained</h6>
