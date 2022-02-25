@@ -63,7 +63,7 @@ public class UserService implements IUserService {
         message.setFrom("andro6@web.de");
         message.setTo(email);
         message.setSubject("Email Verification UnAddict");
-        message.setText("Hallo \n" + "vielen Dank, das Sie sich entschieden haben, den Service von UnAddict zu testen \n" + "/email/?token=" + JWTUtils.createToken(new HashMap<>(), email));
+        message.setText("Hallo \n" + "vielen Dank, das Sie sich entschieden haben, den Service von UnAddict zu testen \n" + "/email/?token=" + jwtUtils.createToken(new HashMap<>(), email));
         emailConfig.getJavaMailSender().send(message);
     }
 

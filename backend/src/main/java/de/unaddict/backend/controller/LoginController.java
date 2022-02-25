@@ -34,7 +34,7 @@ public class LoginController {
                     new UsernamePasswordAuthenticationToken(loginData.getEmail(), loginData.getPassword());
             authenticationManager.authenticate(token);
             //Wenn ja = JWT Token wiedergeben!
-            return JWTUtils.createToken(new HashMap<>(), loginData.getEmail());
+            return jwtUtils.createToken(new HashMap<>(), loginData.getEmail());
         } catch (AuthenticationException e) {
             //Wenn nein = Fehlermeldung!
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "invalid credentials!");
