@@ -2,9 +2,9 @@ import ILoginData from "../Models/ILoginData";
 import axios from "axios";
 
 export const TOKEN_STORAGE_KEY = 'MY_TOKEN';
-const config = {headers:{'Authorization': 'Bearer '+localStorage.getItem(TOKEN_STORAGE_KEY) || ""}}
+const config = {headers: {'Authorization': 'Bearer ' + localStorage.getItem(TOKEN_STORAGE_KEY) || ""}}
 
-export const postLogin = (loginData:ILoginData) =>
+export const postLogin = (loginData: ILoginData) =>
     axios.post("/auth/login", loginData)
 
 export const getLifetime = () =>
@@ -21,4 +21,12 @@ export const getMoneySaved = () =>
 
 export const getTimeSmokeFree = () =>
     axios.get('/api/timesmokefree', config)
+        .then(response => response.data)
+
+export const getProgPercent = () =>
+    axios.get('/api/progression', config)
+        .then(response => response.data)
+
+export const getUserName = () =>
+    axios.get('/api/username', config)
         .then(response => response.data)

@@ -7,6 +7,7 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Component;
 
 import java.util.Properties;
+
 @Component
 public class EmailConfig {
     @Value("${EMAIL_LOGIN}")
@@ -15,10 +16,10 @@ public class EmailConfig {
     public JavaMailSender getJavaMailSender() {
 
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-        mailSender.setHost("smtp.web.de");
+        mailSender.setHost("smtp.gmail.com");
         mailSender.setPort(587);
 
-        mailSender.setUsername("andro6@web.de");
+        mailSender.setUsername("info.unaddict@gmail.com");
         mailSender.setPassword(password);
 
         Properties props = mailSender.getJavaMailProperties();

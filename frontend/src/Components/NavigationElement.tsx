@@ -4,6 +4,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import {TOKEN_STORAGE_KEY} from "../Service/AxiosServiceToBackend";
 import "./NavigationElement.css"
+import menu from "../Pictures/user.png"
 
 
 export default function NavigationElement() {
@@ -19,7 +20,7 @@ export default function NavigationElement() {
     const logout = () => {
         localStorage.removeItem(TOKEN_STORAGE_KEY);
         handleClose()
-        window.location.replace('/login')
+        window.location.replace('/')
     }
 
     return (
@@ -31,7 +32,7 @@ export default function NavigationElement() {
                 aria-expanded={open ? 'true' : undefined}
                 onClick={handleClick}
             >
-                Menu
+                <img src={menu} alt={"button"} style={{"width": "34px"}}/>
             </Button>
             <Menu
                 id="basic-menu"

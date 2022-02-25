@@ -1,0 +1,5 @@
+.designBar {
+    display: grid;
+    width: 320px;
+    padding: 21px;
+}

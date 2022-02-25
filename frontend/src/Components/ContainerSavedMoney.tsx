@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import {getMoneySaved} from "../Service/AxiosServiceToBackend";
+import money from "../Pictures/money-bag.png";
 
 export default function ContainerSavedMoney() {
 
@@ -14,6 +15,7 @@ export default function ContainerSavedMoney() {
     return (
         <div className={"outerContainer"}>
             <div className={"textContainer"}>
+                <img src={money} alt={"QuitSmoke"} style={{"width": "40px"}}/>
                 <h3>{savedMoney} EURO</h3>
                 <h6>Saved by not smoking</h6>
             </div>

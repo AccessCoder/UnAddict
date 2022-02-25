@@ -3,6 +3,7 @@ package de.unaddict.backend.security;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.time.Duration;
@@ -13,10 +14,10 @@ import java.util.Map;
 @Component
 public class JWTUtils {
 
-//    @Value(value = "${SECRET_KEY}")
-    private static String secret = "theCakeIsALie!!";
+        @Value(value = "${SECRET_KEY}")
+    private String secret;
 
-    public static String createToken(Map<String, Object> claims, String subject){
+    public String createToken(Map<String, Object> claims, String subject) {
         return Jwts.builder()
                 .setClaims(claims)
                 .setSubject(subject)
@@ -26,22 +27,22 @@ public class JWTUtils {
                 .compact();
     }
 
-    public String extractUserEMail(String token){
+    public String extractUserEMail(String token) {
         Claims claims = extractAllClaims(token);
         return claims.getSubject();
     }
 
-    public Boolean validateToken(String token, String userEmail){
+    public Boolean validateToken(String token, String userEmail) {
         String tokenName = extractUserEMail(token);
         return (tokenName.equals(userEmail) && !isTokenExpired(token));
     }
 
-    public boolean isTokenExpired(String token){
+    public boolean isTokenExpired(String token) {
         Claims claims = extractAllClaims(token);
         return claims.getExpiration().before(new Date());
     }
 
-    private Claims extractAllClaims(String token){
+    private Claims extractAllClaims(String token) {
         return Jwts.parser().setSigningKey(secret)
                 .parseClaimsJws(token).getBody();
     }

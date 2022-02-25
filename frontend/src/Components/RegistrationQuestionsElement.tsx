@@ -1,4 +1,4 @@
-export default function RegistrationQuestionsElement(){
+export default function RegistrationQuestionsElement() {
     return <div>
         {/*<h1 th:text="#{label.form.title}">form</h1>*/}
         {/*<form action="/" th:object="${user}" method="POST" encType="utf8">*/}

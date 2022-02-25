@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import {getLifetime} from "../Service/AxiosServiceToBackend";
+import healing from "../Pictures/healing.png"
 
 export default function ContainerLifetimeGained() {
 
@@ -14,6 +15,7 @@ export default function ContainerLifetimeGained() {
     return (
         <div className={"outerContainer"}>
             <div className={"textContainer"}>
+                <img src={healing} alt={"Heart"} style={{"width": "40px"}}/>
                 <h3>{gainedLifetime}</h3>
                 <h6>Lifetime gained</h6>
             </div>

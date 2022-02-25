@@ -27,10 +27,14 @@ public class DashboardService {
     }
 
     public double getMoneySaved(UserData user) {
-        return api.getMoneySavedPerCigarette(user.getCigarettesBranchCategory())* api.getNonSmokedCigarettes(user.getCigarettesSmokedEachDayLastYear(), user.getUserRegistrationTime());
+        return api.getMoneySavedPerCigarette(user.getCigarettesBranchCategory()) * api.getNonSmokedCigarettes(user.getCigarettesSmokedEachDayLastYear(), user.getUserRegistrationTime());
     }
 
     public String getLifetimeSaved(UserData user) {
         return api.getLifetimeSaved(user.getAge(), user.getUserRegistrationTime());
+    }
+
+    public double getProgression(UserData user) {
+        return api.getProgressionInPercent(user.getUserRegistrationTime());
     }
 }
