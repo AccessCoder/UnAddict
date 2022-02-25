@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function PopUpElement (props:any) {
+export default function PopUpElement(props: any) {
 
     return (
         <div className="popup-box">

@@ -6,14 +6,15 @@ import ContainerNonSmokedCigarettes from "../Components/ContainerNonSmokedCigare
 import NavigationElement from "../Components/NavigationElement";
 import "./Dashboard.css"
 import {
-    FacebookShareButton,
     FacebookIcon,
-    RedditShareButton,
+    FacebookShareButton,
     RedditIcon,
-    TwitterShareButton,
+    RedditShareButton,
     TwitterIcon,
+    TwitterShareButton,
 } from "react-share";
 import DevelopingProgressBar from "../Components/DevelopingProgressBar";
+import logo from "../Pictures/cigarette.png";
 
 export default function Dashboard() {
 
@@ -33,13 +34,16 @@ export default function Dashboard() {
                 <div className={"box"}><ContainerTimeSmokeFree/></div>
                 <div className={"box"}><ContainerNonSmokedCigarettes/></div>
             </div>
-                <div className={"shareArea"}>
-                    <FacebookShareButton url={targetUrl}><FacebookIcon size={32} round={true}/></FacebookShareButton>
-                    <RedditShareButton url={targetUrl}> <RedditIcon size={32} round={true}/> </RedditShareButton>
-                    <TwitterShareButton url={targetUrl}><TwitterIcon size={32} round={true}/></TwitterShareButton>
-                </div>
+            <div className={"shareArea"}>
+                <FacebookShareButton url={targetUrl}><FacebookIcon size={32} round={true}/></FacebookShareButton>
+                <RedditShareButton url={targetUrl}> <RedditIcon size={32} round={true}/> </RedditShareButton>
+                <TwitterShareButton url={targetUrl}><TwitterIcon size={32} round={true}/></TwitterShareButton>
+            </div>
             <div className="ProgressBar">
                 <DevelopingProgressBar/>
+            </div>
+            <div className="logo">
+                <h1>Un<img src={logo} alt={"cigarette"} style={{"width": "40px"}}/>ddict</h1>
             </div>
         </div>
     );

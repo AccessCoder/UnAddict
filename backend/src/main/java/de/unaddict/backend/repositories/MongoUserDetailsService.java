@@ -16,25 +16,16 @@ public class MongoUserDetailsService implements UserDetailsService {
     private static IUserDataRepository repository;
 
     public MongoUserDetailsService(IUserDataRepository repository) {
-        this.repository = repository;
+        MongoUserDetailsService.repository = repository;
     }
 
     @Override
     public UserDetails loadUserByUsername(String userEMail) throws UsernameNotFoundException {
         Optional<UserData> user = repository.findByEmail(userEMail);
-        if (user.isEmpty()){
+        if (user.isEmpty()) {
             throw new UsernameNotFoundException("User not found");
         }
         return user.get();
     }
-
-    public UserData loadUserByMail(String userEmail) throws UsernameNotFoundException{
-        Optional<UserData> user = repository.findByEmail(userEmail);
-        if (user.isEmpty()){
-            throw new UsernameNotFoundException("User not found");
-        }
-        return user.get();
-    }
-
 
 }

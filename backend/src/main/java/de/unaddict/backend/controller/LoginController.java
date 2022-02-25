@@ -27,15 +27,15 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestBody LoginData loginData){
-        try{
+    public String login(@RequestBody LoginData loginData) {
+        try {
             //Hat Berechtigung sich anzumelden?
             final UsernamePasswordAuthenticationToken token =
                     new UsernamePasswordAuthenticationToken(loginData.getEmail(), loginData.getPassword());
             authenticationManager.authenticate(token);
             //Wenn ja = JWT Token wiedergeben!
-            return jwtUtils.createToken(new HashMap<>(), loginData.getEmail());
-        }catch (AuthenticationException e){
+            return JWTUtils.createToken(new HashMap<>(), loginData.getEmail());
+        } catch (AuthenticationException e) {
             //Wenn nein = Fehlermeldung!
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "invalid credentials!");
         }

@@ -11,7 +11,7 @@
 }
 
 .box {
-    background:linear-gradient(#ffa640, #ff8c00);
+    background: linear-gradient(#ffa640, #ff8c00);
     padding: 20px;
     border-radius: 10px;
     color: #fff;
@@ -23,12 +23,12 @@
     box-shadow: 3px 3px black;
 }
 
-.navBox{
+.navBox {
     display: flex;
     justify-content: flex-end;
 }
 
-.shareArea{
+.shareArea {
     display: flex;
     justify-content: center;
     padding: 64px;
@@ -37,7 +37,7 @@
 
 
 @media (max-width: 430px) {
-    .ContainerArea{
+    .ContainerArea {
         margin: 20px auto;
         width: 300px;
         height: 200px;
@@ -46,6 +46,7 @@
         grid-column-gap: 10px;
         grid-row-gap: 10px;
     }
+
     .box {
         background-color: #333;
         padding: 5px;
@@ -59,11 +60,14 @@
         box-shadow: 3px 3px black;
     }
 
-    .head{
+    .head {
         font-size: 12px;
+        width: 300px;
+        position: relative;
+        left: 36px;
     }
 
-    .shareArea{
+    .shareArea {
         padding: initial;
         width: max-content;
         position: relative;
@@ -71,10 +75,16 @@
         top: -8px;
     }
 
-    .ProgressBar{
-        display: flex;
-        flex-direction: column;
+    .ProgressBar {
         width: 20px;
+        position: relative;
+        top: -80px;
+        left: 6px;
+    }
+
+    .logo {
+        position: relative;
+        top: -88px;
     }
 }
 

@@ -39,8 +39,8 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             if ((userEMail != null)
                     && (SecurityContextHolder.getContext().getAuthentication() == null)) {
                 //Lade User aus DB
-                final UserData userData = userService.loadUserByMail(userEMail);
-                if (jwtUtils.validateToken(token, userData.getEmail())){
+                final UserDetails userData = userService.loadUserByUsername(userEMail);
+                if (jwtUtils.validateToken(token, userEMail)) {
                     //Info an Spring, das Anmeldung korrekt ist!
                     final UsernamePasswordAuthenticationToken authToken =
                             new UsernamePasswordAuthenticationToken(userData, null, userData.getAuthorities());
@@ -54,11 +54,11 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         filter.doFilter(request, response);
     }
 
-    private String getToken(HttpServletRequest request){
+    private String getToken(HttpServletRequest request) {
         String authHeader = request.getHeader("Authorization");
         if (authHeader == null) {
             return null;
-        }else {
+        } else {
             return authHeader.replace("Bearer", "").trim();
         }
     }

@@ -13,7 +13,7 @@ export default function ContainerLifetimeGained() {
     }, [])
 
     return (
-        <div className={"outerContainer"} >
+        <div className={"outerContainer"}>
             <div className={"textContainer"}>
                 <img src={healing} alt={"Heart"} style={{"width": "40px"}}/>
                 <h3>{gainedLifetime}</h3>

@@ -41,4 +41,16 @@ public class DashboardController {
         UserData user = (UserData) authToken.getPrincipal();
         return service.getTimeNotSmoked(user);
     }
+
+    @GetMapping("/progression")
+    public double getProgression(UsernamePasswordAuthenticationToken authToken) {
+        UserData user = (UserData) authToken.getPrincipal();
+        return service.getProgression(user);
+    }
+
+    @GetMapping("/username")
+    public String getUsername(UsernamePasswordAuthenticationToken authToken){
+        UserData user = (UserData) authToken.getPrincipal();
+        return user.getUsername();
+    }
 }

@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import {getNonSmoked} from "../Service/AxiosServiceToBackend";
 import smokeFree from "../Pictures/quit-smoking.png"
 
-export default function ContainerNonSmokedCigarettes(){
+export default function ContainerNonSmokedCigarettes() {
 
     const [nonSmoked, setNonSmoked] = useState(0)
 
@@ -12,7 +12,7 @@ export default function ContainerNonSmokedCigarettes(){
             .catch(error => console.error(error))
     }, [])
 
-    return(
+    return (
         <div className={"outerContainer"}>
             <div className={"textContainer"}>
                 <img src={smokeFree} alt={"QuitSmoke"} style={{"width": "40px"}}/>

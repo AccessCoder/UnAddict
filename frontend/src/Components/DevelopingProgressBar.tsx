@@ -1,7 +1,7 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import "react-step-progress-bar/styles.css";
 // @ts-ignore
-import { ProgressBar, Step} from "react-step-progress-bar";
+import {ProgressBar, Step} from "react-step-progress-bar";
 import "./DevelopingProgressBar.css"
 import love from "../Pictures/love.png"
 import o2 from "../Pictures/oxygen-tank.png"
@@ -11,23 +11,30 @@ import cleanMind from "../Pictures/relief.png"
 import bloodVessel from "../Pictures/blood-vessel.png"
 import starStage from "../Pictures/starStage.png"
 import swal from "sweetalert";
+import {getProgPercent} from "../Service/AxiosServiceToBackend";
 
 
-export default class DevelopingProgressBar extends React.Component {
+export default function DevelopingProgressBar() {
 
-    render() {
+    const [progPercent, setProgPercent] = useState(0)
 
-        return (
-            <div className={"designBar"}>
+    useEffect(() => {
+        getProgPercent()
+            .then(progPercent => setProgPercent(progPercent))
+            .catch(error => console.error(error))
+    }, [])
+
+    return (
+        <div className={"designBar"}>
             <ProgressBar
-                percent={60}
-                stepPositions={[0, 8, 17, 27, 38, 55, 70, 100]}
+                percent={progPercent}
+                stepPositions={[0, 8, 17, 27, 37, 55, 70, 100]}
                 filledBackground="linear-gradient(to right, #ffa640, #ff8c00)"
             >
                 <Step transition="scale">
-                    {({ accomplished }:any) => (
+                    {({accomplished}: any) => (
                         <img
-                            style={{ filter: `grayscale(${accomplished ? 0 : 80}%)` }}
+                            style={{filter: `grayscale(${accomplished ? 0 : 80}%)`}}
                             width="30"
                             src="https://upload.wikimedia.org/wikipedia/commons/6/6b/No_Smoking.svg"
                             alt={""}
@@ -36,13 +43,13 @@ export default class DevelopingProgressBar extends React.Component {
                                 text: "You did the right choice! This is the First Step, into your Smokefree life!",
                                 icon: "success",
                                 buttons: [false]
-                                })}
+                            })}
                         />)}
                 </Step>
                 <Step transition="scale">
-                    {({ accomplished }:any) => (
+                    {({accomplished}: any) => (
                         <img
-                            style={{ filter: `grayscale(${accomplished ? 0 : 80}%)` }}
+                            style={{filter: `grayscale(${accomplished ? 0 : 80}%)`}}
                             width="30"
                             src={o2}
                             alt={"8hr, better o2 in blood"}
@@ -56,9 +63,9 @@ export default class DevelopingProgressBar extends React.Component {
                     )}
                 </Step>
                 <Step transition="scale">
-                    {({ accomplished }:any) => (
+                    {({accomplished}: any) => (
                         <img
-                            style={{ filter: `grayscale(${accomplished ? 0 : 80}%)` }}
+                            style={{filter: `grayscale(${accomplished ? 0 : 80}%)`}}
                             width="30"
                             src={love}
                             alt={"24hr, -risk for Heartattack"}
@@ -72,9 +79,9 @@ export default class DevelopingProgressBar extends React.Component {
                     )}
                 </Step>
                 <Step transition="scale">
-                    {({ accomplished }:any) => (
+                    {({accomplished}: any) => (
                         <img
-                            style={{ filter: `grayscale(${accomplished ? 0 : 80}%)` }}
+                            style={{filter: `grayscale(${accomplished ? 0 : 80}%)`}}
                             width="30"
                             src={taste}
                             alt={"48hr, better taste and sense of smell"}
@@ -88,9 +95,9 @@ export default class DevelopingProgressBar extends React.Component {
                     )}
                 </Step>
                 <Step transition="scale">
-                    {({ accomplished }:any) => (
+                    {({accomplished}: any) => (
                         <img
-                            style={{ filter: `grayscale(${accomplished ? 0 : 80}%)` }}
+                            style={{filter: `grayscale(${accomplished ? 0 : 80}%)`}}
                             width="30"
                             src={star}
                             alt={"72hr, you did the heaviest lifting, the first 3 days are the hardest!"}
@@ -104,9 +111,9 @@ export default class DevelopingProgressBar extends React.Component {
                     )}
                 </Step>
                 <Step transition="scale">
-                    {({ accomplished }:any) => (
+                    {({accomplished}: any) => (
                         <img
-                            style={{ filter: `grayscale(${accomplished ? 0 : 80}%)` }}
+                            style={{filter: `grayscale(${accomplished ? 0 : 80}%)`}}
                             width="30"
                             src={cleanMind}
                             alt={"3 Weeks, all cravings should be gone. Welcome to your new Life <3"}
@@ -120,9 +127,9 @@ export default class DevelopingProgressBar extends React.Component {
                     )}
                 </Step>
                 <Step transition="scale">
-                    {({ accomplished }:any) => (
+                    {({accomplished}: any) => (
                         <img
-                            style={{ filter: `grayscale(${accomplished ? 0 : 80}%)` }}
+                            style={{filter: `grayscale(${accomplished ? 0 : 80}%)`}}
                             width="30"
                             src={bloodVessel}
                             alt={"1y, your risk of 'verengung der Blutgefäße' reduces"}
@@ -136,9 +143,9 @@ export default class DevelopingProgressBar extends React.Component {
                     )}
                 </Step>
                 <Step transition="scale">
-                    {({ accomplished }:any) => (
+                    {({accomplished}: any) => (
                         <img
-                            style={{ filter: `grayscale(${accomplished ? 0 : 80}%)` }}
+                            style={{filter: `grayscale(${accomplished ? 0 : 80}%)`}}
                             width="30"
                             src={starStage}
                             alt={"5y, your risk for Heartattack is extremely lowered, you claimed all Lifetime back, that you could, good Job!"}
@@ -152,7 +159,6 @@ export default class DevelopingProgressBar extends React.Component {
                     )}
                 </Step>
             </ProgressBar>
-            </div>
-        );
-    }
+        </div>
+    );
 }

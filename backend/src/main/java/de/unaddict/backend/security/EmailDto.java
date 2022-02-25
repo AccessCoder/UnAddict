@@ -11,6 +11,6 @@ import javax.validation.constraints.NotEmpty;
 @NoArgsConstructor
 public class EmailDto {
 
-@NotEmpty
+    @NotEmpty
     private String token;
 }

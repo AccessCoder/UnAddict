@@ -1,27 +1,25 @@
 package de.unaddict.backend.modules;
 
 import de.unaddict.backend.security.PasswordMatches;
-import de.unaddict.backend.security.ValidEmail;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @PasswordMatches
+@Builder
 public class UserDto {
 
     @NotNull
     @NotEmpty
     private String name;
-
-    @NotNull
-    @NotEmpty
-    private String surname;
 
     @NotNull
     @NotEmpty
@@ -33,7 +31,7 @@ public class UserDto {
 
     @NotNull
     @NotEmpty
-    private int cigarettesBranchCategory;
+    private String cigarettesBranchCategory;
 
     @NotNull
     @NotEmpty
@@ -44,7 +42,7 @@ public class UserDto {
     private String password;
     private String matchingPassword;
 
-    @ValidEmail
+    @Email(message = "Email not valid")
     @NotNull
     @NotEmpty
     private String email;
